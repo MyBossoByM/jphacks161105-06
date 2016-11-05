@@ -3,633 +3,633 @@
 
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="3daa7a9c9009fd386872a84c177a76979bdcafd6">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-9.8.00_d07625e4de8868c3196ce8bb9dbf53e4814f43ab/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="2d3035050a075484cbf2e33f1ce1f779bae4d451">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-9.8.00_e0ddda41db6065c93dcfdece2e862053167418d3/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="a1ed98e01bd58976d80c062fd0ea2968a1ff68a1">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.8.00_f06fa3c5d9914bf413b3de83e63419899a3a8a98/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_15f52815a951aa425e80b5ae217d1c7893cadb68/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_c75e871a7bd23b2b9292c0495eabb637f84b2d0a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.8.00_840e1a9a5e1fca256128b9efcb0154749f8cda84/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="5f47ede9561595584dca71104baa0fecb36dda87">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-9.8.00_b683cc127b6653a5b1ede52eb6c8bfaa5df6a444/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="a7a04d6b7c01e569a285fa627cf64f5b05295906">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-9.8.00_2f2407703cef947c8a85487f749d54df363ba9e4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.1_15f986df71804c3935eb4a3967db41f244854c91/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="f2d240dd085626f03f759c41d628a0c8b63e491f">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-9.8.00_e4e406cc066945ae74657b009b6244dba5c38879/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="679251204de40ace98776a6f4e3a649c27e3d89f">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-places-9.8.00_84a9a9562d273d279166df7fda64b7a1fd6b1a65/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0b8e087da59c0b062c33f49a335e59f907086da2">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-9.8.00_802277b72fe97e063fa49da15e61a96302db4698/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e3234cd25e23069abd48ecd2117bc0e8011bf45a">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-9.8.00_08b41010fd518a8de8cf2bfe1de3a5a35777a7b7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="fbb3885c40e431cd2b0dc69c0cab2bf6d5da7b43">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-9.8.00_532cf2d580aee2e59442d61480d1486a5000d364/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e56f31b23ddb067f95f01255295167db7c798612">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-9.8.00_7d9c9b038bfec3356ae41360626a161095a5f32d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.1_f388fbb674e32638556b77f8d8e13dc244e0efa2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-instantapps/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="00d358528c5a8731a6e19bca910cbb3fd755ee31">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-instantapps-9.8.00_0031bbecb441f5f2b45f9bc8d912992a3eadbe51/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_aca03d4a6b5f8d07c6fa2c94314938271c81da8b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="85299bf1924dde0200109a58033c5ef84ecb6991">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-iid-9.8.00_441835a69e522979485a27480f2fcd313d585874/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/libs/internal_impl-24.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_9a70a08854e0efde6f5ce617a362e824f5997a0d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_0702ed2ff7ef57566c02d8cafe76a1043f37f950/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="74ac7cbcf0de4a88e59612dc3a9e3f9e71acb4ca">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-9.8.00_2fcdae7a722c1b2fc519027f4647eff054c22ae1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7695369373731ba23e2b8cf4b135136bc331b063">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b390f722273c54d675207bfb832bc498267eec7c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="9dae58326f6f6a515022468cce56dd04ec3b9fdb">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-9.8.00_a6b92e8c1141c07c4b10009738e36d7d1221a8de/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="9ff04cc3470178a44512624036751a803418c2ca">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.8.00_15bd87a4926d7dbd2a01c2db7f4ae06a68ee51b6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="5ffe8867f51cfc726e9fb21db1e5b6962ebf25a0">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-9.8.00_83a0b46a747f1f567e0ed0998ccd946f8deaac60/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="cef85cfc7df40e29fbea58844dd4c1e7d0b15542">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-9.8.00_854b0090ac8a170fd9d9462595dd9d9a0b53c38a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.8.00_9f06c7cf5da29258375ce78e2e6018d72afd960d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="363a20f1d25336e827dd24020f2ecdc42d62638f">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gass-9.8.00_0eaa7cf339719acfb7967334e393e223d5901315/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_2ca4357b06ca01b818c2f64f99f6fab1ddab62e7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-24.0.0_1a9e0cea2e856693114895f0acfac4be68b6b8f8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.1_4775d48627309f1fea797446f5723093f91af831/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e9b2cfdfd59b03643f1e240668275378b96615a8">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-9.8.00_77b3c99b9f53495e068515b56a0cfbb2e224a840/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_b80f5bae0ffc2986a4949d5ad200b64a4038b100/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="190a642ba16d1421296a4d794606279b80039c59">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.8.00_25ad4099c9cb2f5f038e3a8ad54f8048934c23f6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-config/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="289cad663c288ce965463cb9ece8b35cc7de0fac">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-config-9.8.00_bf3c7af91c0ba773b39c8ce5beb1f4ac226e0e29/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="6b6f292b8b951dcf2ecf2b20853e3eabc7d65c48">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.8.00_3dde2cb23d58b0ad7defdd696b56e97bad24a3ee/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_d9251d1d8b1771f6fc4a9420cb12603f79cd67f7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="03df48d3713661d66ad024b1e406259a4c26fcac">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-9.8.00_dc7d3ecf8bf89d675e725610c75a98af9c8289cb/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="a30aea7df545072ad3c06f56b2efc13e67222140">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-9.8.00_4ffd86cf205823e5382ad7b303523c0b12b00b20/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="055eed08c9cff50cac0db69c74c4d9ff7aef3d84">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-9.8.00_8cc61d3b398aaed3e797549ccb9dc5295cd5132e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="a972970c8beddb69c198f61f3fc55f0606a7dfe3">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-9.8.00_8eb4b5071e8029d02092ab61fab160f7ced80d2c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_4b152cfcfb2c5a44fd21f6799d64cd8cb82e4175/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/9.8.00/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="ee5304fd374e0b4ebf6b42d4037fbfb2c5336511">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-clearcut-9.8.00_9a26c496858de2e9c93adf79a797a3f0a3287a02/classes.dex" />
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-clearcut-9.8.0_80255a332c2e1126f5467401d33aa0004602cd4e/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="190a642ba16d1421296a4d794606279b80039c59">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.8.0_8da1159f95d5a805b848b64945fc7c20cdfdc1a7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="679251204de40ace98776a6f4e3a649c27e3d89f">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-places-9.8.0_5098464f6df0477450563d08c853754bc7017f04/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.1_b032076535f423aeee0cea9a57ce75a5d5de682d/classes.dex" />
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.1_5f6557bf6494e4105b7fc799fc4e0b9d6dfcfc6e/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.8.00_b6e677e895759ee4234260e4ec24c3753e38e40c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="04bbbddf868aa02dd33f9e90d8f5d908c360f638">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-9.8.00_cdfe59d1eb1027f896bc1f15056a9b01689c6565/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="ca851be26ff89f5b32cc222cee98139fb3fac830">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.8.00_34cd9415d49045f86d06405afbbe940ac1e01d70/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-awareness/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="a2537b11ae24b42172d34e2a613fc0b903c56158">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-awareness-9.8.00_f91ea5ef3b3c20974ca98dbb8c3aa25491263d49/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_4f83accaa3644b9af159186dc2e47de20b0aea06/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_63da868a1ddb5a349c6f94827d8d7b7dfd400e32/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jar="/Users/Y_h/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_81e90d2ca3620ea37b2e2c293815c57de0ee111b/classes.dex" />
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_5e2b123e199bdce120fb8913f4c1da18c99fe4e9/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.8.00/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="3f8f779a22cbb4c4d0759467a4f1011bb5252970">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.8.00_c80b928633d391244ba6bbb00ca8cc21f8cfe48a/classes.dex" />
+        sha1="3daa7a9c9009fd386872a84c177a76979bdcafd6">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-9.8.0_061f03dc769a986002fc25d9b2c85e616d4c85e7/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="4438b1a7848a7c571122ba618aa1304514aabee6">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-common-9.8.00_289489788e126bf1be8a101c8797747448d90918/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="122ec9237acd8a57d974b9d529987f1ee6ca5aea">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.8.00_8aa22bab5cbc7c7ddcd219f5086c84ca5ab23979/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="c81df6bd515398ebe45089b0b16c55752a131f6a">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-9.8.00_a050102d2b567d302491d65469ffc811582856d4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.1_a198572ce4148a121273a601f635f88433680722/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0b53c4b90654b67ee3892a8e2e7b819c083ab7a6">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-9.8.00_c20985def19de9141898adaaa1f581b0a577ab7e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7fd91ec2730fdaa82906aad32a3f3d3e574bae56">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-9.8.00_b58604d12d54299017a922e42950b28b4fa8b990/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="ec9104b53aee77dfcfd2fe1c4add23ff7c4df55f">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-common-9.8.00_07cf5cbbc34be4e962ff63311882cdbabd0eeb5d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/9.8.00/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="20a3c4e355150c15c13dd58045d43ad0c717d916">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-9.8.00_cd2d892be3f22a9961f09c988755ec96e8dbf55b/classes.dex" />
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-9.8.0_bee7cf3d757d921b144482844505529fa66fdd1e/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="7fe7caff6bca73fc4e722cb7d1a542883d8f49d0">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_cf3d17d25d21629710b23cfde89d9089d07e9828/classes.dex" />
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_1769fdc48a566bab8380637cb6669acdeb8a265f/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/9.8.00/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="266570862e5792ef3c51143a8b8593cf54fac68d">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-api-9.8.00_4d711e5723515b975cc7db4d00a903370ed54a97/classes.dex" />
+        sha1="a1ed98e01bd58976d80c062fd0ea2968a1ff68a1">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.8.0_61702f4e28bb7488c10acaa1c03561984d764f33/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.8.00/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="16afe57c1d7f8165d107c7806ce7b0c71de87159">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-9.8.00_c6f231a0c4d82076adb52dc1f741416eba711043/classes.dex" />
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_cac94c9003ec25e9256b9b7ab61096df4e90a3e9/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="15e59454416c6341bd3ed2533b585cd340682dd1">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-9.8.00_3540a2072977f9160b23e872763c7bf294a93cf9/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/9.8.00/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="b4671be3d1288bf4e5f527cd33e42909fbe4ecc6">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-9.8.00_868497bb3b25fe114f114ee7725dbcc526aeaa81/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.android.support/palette-v7/24.0.0/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/palette-v7/24.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="734e80dffea7bd76c18ae256822a124c30d85850">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-palette-v7-24.0.0_c506ec5029cfc79e5da80e3ce607efd5ce2fe967/classes.dex" />
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-palette-v7-24.0.0_4d98905cb406402dac4205d2a609ab53b99de13c/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.8.00/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.1_d3fda10e43f49088308f0339b1ac3e88753b0440/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7fd91ec2730fdaa82906aad32a3f3d3e574bae56">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-9.8.0_0469bdf4e3a9869a40f17c24871939ada2b05bdb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.1_ded78721cccc63e5acce575190d341b3418c5916/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_a5353b4b1c8a402a6a9c052ec7888d9c02a9c7dd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="04bbbddf868aa02dd33f9e90d8f5d908c360f638">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-9.8.0_1d9b84d08ef77174fa5b44ce6db9b2dc0b9b276e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ec9104b53aee77dfcfd2fe1c4add23ff7c4df55f">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-common-9.8.0_4d785eb61481ba5535dd0829a8b27a303fb74398/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a972970c8beddb69c198f61f3fc55f0606a7dfe3">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-9.8.0_a540531252ddec7c49dd39a54d66fb8c5a938645/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e3234cd25e23069abd48ecd2117bc0e8011bf45a">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-9.8.0_81e5923a6eae24086055f2d33aab288d453f8098/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_6b30be46ce07c117e858028442915df6a206f431/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.1_1bc02deee41d2012f7dbda71c214cf3a44e285f8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-awareness/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a2537b11ae24b42172d34e2a613fc0b903c56158">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-awareness-9.8.0_e00776fa7648b43d44512c4226096575da2044df/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9dae58326f6f6a515022468cce56dd04ec3b9fdb">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-9.8.0_b486f9787fa9076d654f78122d853c3ad479272e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f2d240dd085626f03f759c41d628a0c8b63e491f">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-9.8.0_f5ae0d69793f72898c40deb5fa841096dd6e77fa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.8.0_376d232d8ab74302670f5f4be52d18fcd44dd1ff/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-config/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="289cad663c288ce965463cb9ece8b35cc7de0fac">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-config-9.8.0_6a02a4021e237830bd41dfaad163c1d3c78ab7ed/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="7e92aadd0697922316d1395c1887a23aebec640a">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.8.00_207fe5d7b4a231ae6b2d39e8b9c11029ac615b80/classes.dex" />
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.8.0_9091b754041f40c6f1b1be7aa24cd6ad25b56888/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.8.00/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="50e35ae101a679c4c8ef3dda075b1df9d5d947d9">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-impl-9.8.00_b2095bf96424f5e00987d3884897fc13bd2bc5a3/classes.dex" />
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_c698d30801584c032c6db7a18a3e385f7c54c10c/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/9.8.00/jars/classes.jar"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5f47ede9561595584dca71104baa0fecb36dda87">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-9.8.0_27dbcfd217e3757ee176ecae9f404df0acfc6011/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_1a6a5e67bb3a3ebfb899880ee8ea86b63ae3aca5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a7a04d6b7c01e569a285fa627cf64f5b05295906">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-9.8.0_2d738ff1ceb7e63b6b0421cba08bcbf564703d7e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_9f5bb09afb00b6ee3e70e836f19ba3ee735c9122/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_46fc41a4a47f8b2827871224b2b9ec505efb10c1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ca851be26ff89f5b32cc222cee98139fb3fac830">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.8.0_b98fd5bf210fac4c4c755ba033cd2615d66bb356/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="4438b1a7848a7c571122ba618aa1304514aabee6">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-common-9.8.0_1a223b2856d15f14888bee9a88999c461f94a8a1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="85299bf1924dde0200109a58033c5ef84ecb6991">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-iid-9.8.0_fc915800f23c86bc35187baa7279bbeffcb6bbb6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9c520e134e3ed19c7c088e85905960375d5fba6d">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_9b6da56bc4300b0d6c32a478c3e75a1fba95db51/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6b6f292b8b951dcf2ecf2b20853e3eabc7d65c48">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.8.0_5a130906dab19635637983c21fe1dde446785076/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fbb3885c40e431cd2b0dc69c0cab2bf6d5da7b43">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-9.8.0_d96df7ee4a778972cb10925f4dc9e8b2cbd29af0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_0e98bad2df3c2d9d631e48abc577b90e2c8e7a2d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_9b7cb451830139efd61a457c42a9315fcc830336/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="2d3035050a075484cbf2e33f1ce1f779bae4d451">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-9.8.0_b953ede2f68d6266612af926d9439180e7226fc2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e9b2cfdfd59b03643f1e240668275378b96615a8">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-9.8.0_7e0e9f1da25b04242b2d6a0637f597f3846bca75/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_b3dba5e9661fd7099c3988f51eed0a335ab26f8d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="363a20f1d25336e827dd24020f2ecdc42d62638f">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gass-9.8.0_58fd06261534bde2815f50a9a540cf4c65bcd124/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e56f31b23ddb067f95f01255295167db7c798612">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-9.8.0_2cdc9546492ac42955b6303d4c17c2ebd00e29d3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="055eed08c9cff50cac0db69c74c4d9ff7aef3d84">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-9.8.0_533cea4dc5d4affc799a2ead1c3dc34c63a55e9d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-instantapps/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="00d358528c5a8731a6e19bca910cbb3fd755ee31">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-instantapps-9.8.0_6f30018dbb1b7541b6f4e21dd1db0de6a238a958/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.1_a5c28b63c64accd29dffa3c83842c5edeeac4ccf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0b8e087da59c0b062c33f49a335e59f907086da2">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-9.8.0_6bada5b9a0e4b17408a9285d164c56a4d78226ea/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="910c013c511f752c4bbe24c5f492f669f4a3ccc0">
-        <dex dex="/Users/tono/Downloads/MYBOSS/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-9.8.00_e31199eaf7e2670be06dd3300adc5bb59a0acc46/classes.dex" />
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-9.8.0_874aaf7951f00b7821166f45b95b2df3194defb2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="3f8f779a22cbb4c4d0759467a4f1011bb5252970">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.8.0_f1e73526980f1aa2ac930db026f8f92c087ff9f8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="03df48d3713661d66ad024b1e406259a4c26fcac">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-9.8.0_dc4e5197f5c0d7086f69b369a691140a26aabce3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-24.0.0_9e9b8a2def209a0ef9a8fdc3e59b3d9b03b6a7d1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c81df6bd515398ebe45089b0b16c55752a131f6a">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-9.8.0_eb9e7072a91005e06a73a51ccbb256c3f0531d41/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="122ec9237acd8a57d974b9d529987f1ee6ca5aea">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.8.0_287ca3ac2379e3fead340a919d585331d60a7570/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="266570862e5792ef3c51143a8b8593cf54fac68d">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-api-9.8.0_e9dea9c353b60526bd029dc4b83b4ab5df03ef4b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5ffe8867f51cfc726e9fb21db1e5b6962ebf25a0">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-9.8.0_6294a1207f2827d96cc73c46b094315e08700e5c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="50e35ae101a679c4c8ef3dda075b1df9d5d947d9">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-impl-9.8.0_b16d6d4d6c01067b41783997de3f2a6db8c21cf6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.8.0_c08385853bf1a42ebd50c85aa9ec68fd53c41faf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="15e59454416c6341bd3ed2533b585cd340682dd1">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-9.8.0_fc2533aa614230abbdce08014a7edd6a0f1de958/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8a0022c7075b346907cf0abc36841794e07c720f">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_aab68a0031dc66557a5429eda78370b18995ebf7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="74ac7cbcf0de4a88e59612dc3a9e3f9e71acb4ca">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-9.8.0_22fb289c12ce1358e9185087358fe2db9b9d061d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="cef85cfc7df40e29fbea58844dd4c1e7d0b15542">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-9.8.0_504f53f91eaa77316d06fc466975d54948b766a4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="16afe57c1d7f8165d107c7806ce7b0c71de87159">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-9.8.0_2c97749c50bb025d84b872738e2e8e4d2becfa6b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b4671be3d1288bf4e5f527cd33e42909fbe4ecc6">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-9.8.0_4fac7e1fd497a84c5e8cae1c559f36d34779ba47/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0b53c4b90654b67ee3892a8e2e7b819c083ab7a6">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-9.8.0_674668d0e571614f53ee11ae609b182058ba27e7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.8.0_500f5020e6e47191c79dae374f1248bd1ff4ddd2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9ff04cc3470178a44512624036751a803418c2ca">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.8.0_c4e847df1f5985539f495bcc3454c763f7eb61a4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Y_h/Desktop/questrip/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a30aea7df545072ad3c06f56b2efc13e67222140">
+        <dex dex="/Users/Y_h/Desktop/questrip/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-9.8.0_d4c66e7ec4d3d68f626f854d768014d3069cf88c/classes.dex" />
     </item>
 
 </items>

@@ -27,14 +27,18 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -152,7 +156,11 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     //-------------------------------------
 
     private RecyclerView recyclerView;
-
+    private RelativeLayout gameframe;
+    private RelativeLayout layout;
+    private TextView text;
+    private LinearLayout botton;
+    private int height;
 
     private JSONArray media_datas;
 
@@ -226,6 +234,16 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
         setClickListener();
 
+        // WindowManagerのインスタンス取得
+        WindowManager wm = getWindowManager();
+        // Displayのインスタンス取得
+        Display disp = wm.getDefaultDisplay();
+        height= disp.getHeight();
+
+        layout = (RelativeLayout)findViewById(R.id.activity_main);
+        gameframe = (RelativeLayout)findViewById(R.id.mapframe);
+        text = (TextView)findViewById(R.id.myboss);
+        botton = (LinearLayout)findViewById(R.id.bottonll);
 
         //instagramから取得した画像を表示するRecyclerViewの設定
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
@@ -597,6 +615,8 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
 
+        setView();
+
         mHandler = new Handler();
         mTimer = new Timer();
         mTimer.schedule(new TimerTask() {
@@ -619,7 +639,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                     }
                 });
             }
-        }, 10000, 10000); // 実行したい間隔(ミリ秒)
+        }, 1000, 10000); // 実行したい間隔(ミリ秒)
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
@@ -653,6 +673,37 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             mTimer.cancel();
             mTimer = null;
         }
+    }
+
+    //viewの配置を決めるメソッド---------------------------------------------
+    void setView(){
+        gameframe.setId(1); text.setId(2); recyclerView.setId(3); botton.setId(4);
+
+        RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, (int)(height*0.51));
+        RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams lp3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams lp4 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        lp1.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        lp2.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        lp2.addRule(RelativeLayout.BELOW,1);
+        lp3.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        lp3.addRule(RelativeLayout.BELOW,2);
+        lp3.addRule(RelativeLayout.ABOVE,4);
+        lp4.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        lp4.addRule(RelativeLayout.CENTER_HORIZONTAL);
+
+        lp1.setMargins(0,0,0,0);
+        lp2.setMargins(0,10,0,80);
+        lp3.setMargins(0,0,0,0);
+        lp4.setMargins(0,80,0,0);
+
+        layout.removeAllViews();
+        layout.addView(gameframe,lp1);
+        layout.addView(text,lp2);
+        layout.addView(botton,lp4);
+        layout.addView(recyclerView,lp3);
     }//--------------------------------------------------------------------------------ここまで dyamashita
 
 

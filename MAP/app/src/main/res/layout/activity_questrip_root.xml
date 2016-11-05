@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#000000"
+    android:textColor="#FFFFFF"
     android:layout_height="match_parent">
 
     <Button
-        android:text="ここからスタート（仮）"
+        android:text="　ここから冒険をはじめる　　"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:textColor="#FFFFFF"
+        android:layout_above="@+id/button_fromthere"
         android:id="@+id/button_fromhere" />
 
     <Button
-        android:text="あそこからスタート"
+        android:text="　違う場所から冒険をはじめる"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:textColor="#FFFFFF"
+        android:layout_above="@+id/button_search_around"
         android:id="@+id/button_fromthere" />
 
     <Button
-        android:text="周囲を探す"
+        android:text="　周辺のスポットまで冒険する"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:textColor="#FFFFFF"
+        android:layout_above="@+id/button_char_collection"
         android:id="@+id/button_search_around" />
 
     <Button
-        android:text="ご当地キャラ図鑑"
+        android:text="　ご当地キャラ図鑑をみる　　"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
         android:id="@+id/button_char_collection" />
-</LinearLayout>
+</RelativeLayout>
