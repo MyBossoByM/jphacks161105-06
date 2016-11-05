@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 
 // ---- Renamed and Created by tdomen on 2016/10/25 -----
 var login = require('./routes/auth/login');
-// var end = require('./routes/end/endfeedback');
 var zukan = require('./routes/zukan/zukan');
 var http = require('http');
+var mongoose = require('mongoose');
 // ------------------------------------------------------
 
 var app = express();
@@ -34,25 +34,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ルーティング機能
 app.use('/login', login);
-// app.use('/endfeedback', end);
 app.use('/zukan', zukan);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function(err, req, res, next) {
+      res.status(err.status || 500);
+      res.render('error', {
+	message: err.message,
+	error: err
     });
   });
 }
@@ -60,11 +59,11 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+    res.status(err.status || 500);
+    res.render('error', {
+	message: err.message,
+	error: {}
+    });
 });
 
 
@@ -72,7 +71,8 @@ app.use(function(err, req, res, next) {
 
 // サーバ立ち上げ
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
+    mongoose.connect('mongodb://localhost/backend');
 });
 // ------------------------------------------
 
