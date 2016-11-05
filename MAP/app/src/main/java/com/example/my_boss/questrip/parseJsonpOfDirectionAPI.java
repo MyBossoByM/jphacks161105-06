@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 public class parseJsonpOfDirectionAPI {
 
-    Localization ma;
+    Instagram_connect_Activity ma;      // Guide アクティビティでも流用
 
     public Object[] parse(JSONObject jObject){
         String temp = "";

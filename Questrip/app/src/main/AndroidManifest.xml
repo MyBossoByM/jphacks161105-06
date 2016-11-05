@@ -32,6 +32,7 @@
         </activity>
 
         <activity android:name=".questrip_setting_Activity_2"></activity>
+        <activity android:name=".questrip_collection_Activity"></activity>
         <activity android:name=".questrip_Login_Activity"></activity>
         <activity android:name=".Instagram_connect_Activity"></activity>
         <activity android:name=".MapsActivity"></activity>

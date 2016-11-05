@@ -574,6 +574,7 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
     //キャラクター用位置情報取得のための例外処理
     void getMascotLocation(){
         switch (area){
+            case "兵庫県": area = "神戸市役所"; break;
             case "岡山県": area = "岡山県庁駐車場"; break;
             case "広島県": area = "広島県自治会"; break;
             case "山口県": area = "山口県政資料館"; break;

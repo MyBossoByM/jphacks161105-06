@@ -103,7 +103,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     private Uri.Builder builder[] = new Uri.Builder[50];
     private Uri.Builder gotouchi_builder;
 
-    private int NUM_PIN = 30;
+    private int NUM_PIN = 10;
 
 //    private Localization localization = new Localization();     //Localizationオブジェクト
 
@@ -125,11 +125,16 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
     private String json_getplace;   //AsynvtaskでgetしたJsonオブジェクト
     private String json_getitem;    //画像取得用Asynctaskから取得したJSON
-    private long place_id[] = new long[NUM_PIN + 1];      //場所ID
-    private String place_name[] = new String[NUM_PIN + 1]; //地名
-    private double latitude_fromJson[] = new double[NUM_PIN + 1];     //場所リクエストから取得した緯度
-    private double longitude_fromJson[] = new double[NUM_PIN + 1];    //場所リクエストから取得した経度
-    private LatLng latlng_fromJson[] = new LatLng[NUM_PIN + 1];       //googlemapにピンを立てる際の（緯度，経度）格納庫
+    private long crrent_place_id;                   //現在の場所ID
+    private long place_id[] = new long[NUM_PIN];      //場所ID
+    private String current_place_name; //現在地地名
+    private String place_name[] = new String[NUM_PIN]; //地名
+    private double current_latitude_fromJson;     //場所リクエストから取得した現在地の緯度
+    private double current_longitude_fromJson;    //場所リクエストから取得した現在地の経度
+    private double latitude_fromJson[] = new double[NUM_PIN];     //場所リクエストから取得した緯度
+    private double longitude_fromJson[] = new double[NUM_PIN];    //場所リクエストから取得した経度
+    private LatLng current_latlng_fromJson;                                   //googlemapにピンを立てる際の（緯度，経度）格納庫
+    private LatLng latlng_fromJson[] = new LatLng[NUM_PIN];       //googlemapにピンを立てる際の（緯度，経度）格納庫
 
     private String images[] = new String[300];
     public Uri uri[] = new Uri[300];
@@ -152,7 +157,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     public boolean time_out = false;
     public Marker realy_marker;
     public Marker goal_marker;
-
     //-------------------------------------
 
     private RecyclerView recyclerView;
@@ -207,6 +211,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             goal_longitude = Double.parseDouble(intent.getStringExtra("longitude"));
             goal_hour = Integer.parseInt(intent.getStringExtra("hour"));
             goal_minute = Integer.parseInt(intent.getStringExtra("minute"));
+            light_version = false;
         } else {
             goal_latitude = -1.0;
             goal_longitude = -1.0;
@@ -281,7 +286,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             gMap.addMarker(new MarkerOptions().position(goal_position).title("最終目的地")
                     .icon(BitmapDescriptorFactory.defaultMarker(150)));
         }
-//        Current_Distination_Time(latitude, longitude, goal_latitude, goal_longitude);
+        Current_Distination_Time(latitude, longitude, goal_latitude, goal_longitude);
 
         //url_getplace：場所取得リクエストURL(latitude，longitude：現在地の緯度，経度 access_token：アクセストークン，distance：情報取得の範囲)
         url_getplace = "https://api.instagram.com/v1/locations/search?" + "lat=" + latitude + "&lng=" + longitude + "&distance=" + 100 + "&access_token=" + access_token + "&count=" + NUM_PIN;
@@ -294,19 +299,23 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             //ここから取得したJsonをパース
             jsonData = new JSONObject(json_getplace);
             JSONArray datas = jsonData.getJSONArray("data");
-            latlng_fromJson[0] = new LatLng(latitude, longitude);     //latlng_fromJson[0]には現在位置を格納
-            place_name[0] = "現在地";
+            current_latlng_fromJson = new LatLng(latitude, longitude);     //latlng_fromJson[0]には現在位置を格納
+            current_place_name = "現在地";
 
             //latlng_fromJson[1]以降はinstagramから取得した緯度，経度を格納
             for (int i = 0; i < datas.length(); i++) {
                 JSONObject data = datas.getJSONObject(i);
                 // 名前を取得
-                place_name[i + 1] = data.getString("name");
-
-                latitude_fromJson[i] = Double.parseDouble(data.getString("latitude"));
-
-                longitude_fromJson[i] = Double.parseDouble(data.getString("longitude"));
-                latlng_fromJson[i + 1] = new LatLng(latitude_fromJson[i], longitude_fromJson[i]);
+                place_name[i] = data.getString("name");
+                System.out.println(place_name[i]);
+                if(i == 0) {
+                    current_latitude_fromJson = Double.parseDouble(data.getString("latitude"));
+                    current_longitude_fromJson = Double.parseDouble(data.getString("longitude"));
+                } else {
+                    latitude_fromJson[i-1] = Double.parseDouble(data.getString("latitude"));
+                    longitude_fromJson[i-1] = Double.parseDouble(data.getString("longitude"));
+                    latlng_fromJson[i-1] = new LatLng(latitude_fromJson[i-1], longitude_fromJson[i-1]);
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -321,11 +330,12 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
         //マップの処理
         if (gMap != null) {
-            for (int count = 0; count < latlng_fromJson.length - 1; count++) {
+            for (int count = 0; count < latlng_fromJson.length-1; count++) {
                 if (count == 0) {
                     // 現在地へのピン立て
-                    gMap.addMarker(new MarkerOptions().position(latlng_fromJson[count]).title(place_name[count])
+                    gMap.addMarker(new MarkerOptions().position(current_latlng_fromJson).title(current_place_name)
                             .icon(BitmapDescriptorFactory.defaultMarker(200)));
+                    gMap.addMarker(new MarkerOptions().position(latlng_fromJson[count]).title(place_name[count]));
 //                    if(light_version) {
 //                        LatLng goal_position = new LatLng(goal_latitude, goal_longitude);
 //                        gMap.addMarker(new MarkerOptions().position(goal_position).title("最終目的地")
@@ -360,7 +370,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                             //ここから取得したJsonをパース
                             jsonData = new JSONObject(json_getplace);
                             JSONArray datas = jsonData.getJSONArray("data");
-                            latlng_fromJson[0] = new LatLng(latitude, longitude);     //latlng_fromJson[0]には現在位置を格納
+                            current_latlng_fromJson = new LatLng(latitude, longitude);     //latlng_fromJson[0]には現在位置を格納
 
                             //latlng_fromJson[1]以降はinstagramから取得した緯度，経度を格納
                             for (int i = 0; i < datas.length(); i++) {
@@ -384,27 +394,22 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                         JSONObject jsonData_getitem = null; //画像取得用Asyncから戻ってきたJsonを格納するオブジェクト
                         int count_tmp = 0;
                         final ArrayList<Bitmap> list = new ArrayList();
-                        for (int count = 0; count < latlng_fromJson.length - 1; count++) {
-                            count_tmp += 1;
+                        for (int count = 0; count < latlng_fromJson.length; count++) {
+                            count_tmp = count;
                             String id = "m" + count;
                             if (marker.getId().equals("m0")) {
+                                System.out.println("0だよ");
                                 break;
                             } else if (marker.getId().equals(id)) {
+                                System.out.println(id+ "だよ");
 //                        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_LONG).show();
                                 task_getitem = new getItemDataAsync();  //画像取得用Asynctaskのnew
                                 //場所id(place_id)を用いてアイテムデータをJsonオブジェクトで取得
                                 url_getitem = "https://api.instagram.com/v1/locations/" + String.valueOf(place_id[count]) + "/media/recent?access_token=" + access_token;// リクエストURL
-                                tapped_marker[0] = latitude_fromJson[count];
-                                tapped_marker[1] = longitude_fromJson[count];
-                                tapped_marker_name = place_name[count_tmp];
-//                        tapped_marker_name = "aaa";
-
-
                                 try {
                                     json_getitem = task_getitem.execute(url_getitem).get();   //画像取得Asynctaskを実行し，doInbackgroundの返り値をjson_getitemに格納
                                     //ここから画像取得Asyncで取得したJsonをパース
                                     jsonData_getitem = new JSONObject(json_getitem);
-
                                     media_datas = jsonData_getitem.getJSONArray("data");
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
@@ -413,6 +418,25 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+
+                                tapped_marker[0] = latitude_fromJson[count-2];
+                                tapped_marker[1] = longitude_fromJson[count-2];
+                                tapped_marker_name = place_name[count-2];
+                                Current_Relay_Time(latitude, longitude, tapped_marker[0], tapped_marker[1]);
+                                break;
+//                                if(light_version) {
+//                                    tapped_marker[0] = latitude_fromJson[count-1];
+//                                    tapped_marker[1] = longitude_fromJson[count-1];
+//                                    tapped_marker_name = place_name[count];
+//                                    Current_Relay_Time(latitude, longitude, latitude_fromJson[count_tmp], longitude_fromJson[count_tmp]);
+//                                } else {
+//                                    if(count - 2 > 0) {
+//                                        tapped_marker[0] = latitude_fromJson[count-2];
+//                                        tapped_marker[1] = longitude_fromJson[count-2];
+//                                        tapped_marker_name = place_name[count-1];
+//                                        Current_Relay_Time(latitude, longitude, latitude_fromJson[count_tmp], longitude_fromJson[count_tmp]);
+//                                    }
+//                                }
                             }
                         }
 
@@ -443,7 +467,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 //                        e.printStackTrace();
                             }
                         }
-
 //                Toast.makeText(this, String.valueOf(images[0]), Toast.LENGTH_LONG).show();
                         handler.post(new Runnable() {   //---------------------------------------------------------------
                             @Override
@@ -451,23 +474,9 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                             public void run() {         //---------------------------------------------------------------
                                 recyclerView.setAdapter(new RecyclerAdapter(getApplicationContext(), list));
                             }                           //---------------------------------------------------------------
-                        });                             //---------------------------------------------------------------
+                        });
                     }
                 }).start();                             //---------------------------------------------------------------
-
-
-                System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                System.out.println("=-=-=-=-=-=-=-  tap!  =-=-=-=-=-=-=");
-                System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-//                        Current_Relay_Time(latitude, longitude, tapped_marker[0], tapped_marker[1]);
-                        Current_Relay_Time(latitude,longitude , 34.80121471, 135.06795007);
-                System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                System.out.println(latitude);
-                System.out.println(tapped_marker[0]);
-                System.out.println(longitude);
-                System.out.println(tapped_marker[1]);
-                System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-
                 return false;
             }
         });
@@ -1321,7 +1330,9 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         client.disconnect();
     }
 
-
+    public int time_data[] = new int[2];
+    public int h = 0;
+    public int m = 0;
 
     //    時間出力（現在地から目的地）
     private void Current_Distination_Time
@@ -1396,37 +1407,37 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         System.out.println("====-----====----- Current_Distination ====-----====-----");
         System.out.println(routeTime_Current_Distination);
 
-//        time_data = MinutesToTime(routeTime_Current_Distination);
-//        Calendar calendar = Calendar.getInstance();
-//        h = calendar.get(calendar.HOUR_OF_DAY);
-//        h = h + time_data[0];
-//        if(h >= 24) h = h - 24;
-//        m = calendar.get(calendar.MINUTE);
-//        m = m + time_data[1];
-//        if(m >= 60) {
-//            m = m - 60;
-//            h = h + 1;
-//        }
-//        if(h > goal_hour) time_out = true;
-//        else if(h == goal_hour && m > goal_minute) time_out = true;
-//        else time_out = false;
-//        if(goal_hour < 0) time_out = false;
-//        if(light_version) time_out = false;
-//
-//        LatLng goal = new LatLng(goal_latitude, goal_longitude);
-//        if(!light_version) {
-//            goal_marker = gMap.addMarker(new MarkerOptions()
-//                    .position(goal)
-//                    .title("最終目的地")
-//                    .snippet("到着予定時刻 " +h+ "時" +m+ "分")
-//                    .icon(BitmapDescriptorFactory.defaultMarker(150)));
-//        } else {
-//            goal_marker = gMap.addMarker(new MarkerOptions()
-//                    .position(goal)
-//                    .title("現在地")
-//                    .icon(BitmapDescriptorFactory.defaultMarker(200)));
-//        }
-//        goal_marker.showInfoWindow();
+        time_data = MinutesToTime(routeTime_Current_Distination);
+        Calendar calendar = Calendar.getInstance();
+        h = calendar.get(calendar.HOUR_OF_DAY);
+        h = h + time_data[0];
+        if(h >= 24) h = h - 24;
+        m = calendar.get(calendar.MINUTE);
+        m = m + time_data[1];
+        if(m >= 60) {
+            m = m - 60;
+            h = h + 1;
+        }
+        if(h > goal_hour) time_out = true;
+        else if(h == goal_hour && m > goal_minute) time_out = true;
+        else time_out = false;
+        if(goal_hour < 0) time_out = false;
+        if(light_version) time_out = false;
+
+        LatLng goal = new LatLng(goal_latitude, goal_longitude);
+        if(!light_version) {
+            goal_marker = gMap.addMarker(new MarkerOptions()
+                    .position(goal)
+                    .title("最終目的地")
+                    .snippet("到着予定時刻 " +h+ "時" +m+ "分")
+                    .icon(BitmapDescriptorFactory.defaultMarker(150)));
+        } else {
+            goal_marker = gMap.addMarker(new MarkerOptions()
+                    .position(goal)
+                    .title("現在地")
+                    .icon(BitmapDescriptorFactory.defaultMarker(200)));
+        }
+        goal_marker.showInfoWindow();
     }
 
     private void timeManager_Current_Relay_Distination_store(int time){
@@ -1441,32 +1452,32 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         System.out.println("====-----====----- Current_Relay ====-----====-----");
         System.out.println(routeTime_Current_Relay);
 
-//        time_data = MinutesToTime(routeTime_Current_Relay);
-//        Calendar calendar = Calendar.getInstance();
-//        h = calendar.get(calendar.HOUR_OF_DAY);
-//        h = h + time_data[0];
-//        if(h >= 24) h = h - 24;
-//        m = calendar.get(calendar.MINUTE);
-//        m = m + time_data[1];
-//        if(m >= 60) {
-//            m = m - 60;
-//            h = h + 1;
-//        }
-//        if(h > goal_hour) time_out = true;
-//        else if(h == goal_hour && m > goal_minute) time_out = true;
-//        else time_out = false;
-//        if(goal_hour < 0) time_out = false;
-//        if(light_version) time_out = false;
-//
-//
-//        LatLng relay = new LatLng(tapped_marker[0], tapped_marker[1]);
-//        System.out.println("0:" +tapped_marker[0]);
-//        System.out.println("1:" +tapped_marker[1]);
-//        realy_marker = gMap.addMarker(new MarkerOptions()
-//                .position(relay)
-//                .title(tapped_marker_name)
-//                .snippet("到着予定時刻 " +h+ "時" +m+ "分"));
-//        realy_marker.showInfoWindow();
+        time_data = MinutesToTime(routeTime_Current_Relay);
+        Calendar calendar = Calendar.getInstance();
+        h = calendar.get(calendar.HOUR_OF_DAY);
+        h = h + time_data[0];
+        if(h >= 24) h = h - 24;
+        m = calendar.get(calendar.MINUTE);
+        m = m + time_data[1];
+        if(m >= 60) {
+            m = m - 60;
+            h = h + 1;
+        }
+        if(h > goal_hour) time_out = true;
+        else if(h == goal_hour && m > goal_minute) time_out = true;
+        else time_out = false;
+        if(goal_hour < 0) time_out = false;
+        if(light_version) time_out = false;
+
+
+        LatLng relay = new LatLng(tapped_marker[0], tapped_marker[1]);
+        System.out.println("0:" +tapped_marker[0]);
+        System.out.println("1:" +tapped_marker[1]);
+        realy_marker = gMap.addMarker(new MarkerOptions()
+                .position(relay)
+                .title(tapped_marker_name)
+                .snippet("到着予定時刻 " +h+ "時" +m+ "分"));
+        realy_marker.showInfoWindow();
     }
 
     public int[] MinutesToTime(int minutes) {

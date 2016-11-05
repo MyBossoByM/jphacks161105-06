@@ -62,6 +62,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONObject;
 
@@ -146,8 +147,8 @@ public class Guide extends FragmentActivity implements
     //    目的地 34.802556297454004,135.53884506225586
 //    public double latitude_Destination = 34.68756965238;       //適当な緯度
 //    public double longitude_Destination = 135.1965938508;       //適当な経度
-    public double latitude_Destination = 34.69162119;       //適当な緯度
-    public double longitude_Destination = 135.192208036;       //適当な経度
+    public double latitude_Destination ;       //適当な緯度
+    public double longitude_Destination ;       //適当な経度
 
 //    tapped_marker[0] = 34.69162119;
 //    tapped_marker[1] = 135.192208036;
@@ -167,6 +168,23 @@ public class Guide extends FragmentActivity implements
 
     private Timer mTimer = null;
     private Handler mHandler = null;
+
+
+    //2016_11_05_19_40 crated by TAKAYA
+    private String url_post_server = "http://192.168.20.23:3000/zukan";
+    private String url_getitem;
+    private String api_key_gotouchi = "580e584e09edb";
+    private getItemDataAsync get_gotouchi;
+    private String json_postitem;
+    private post_server_Async post_server_async;
+
+    global_values global;
+    private String userID;
+
+
+
+
+
 //    ===================================================================================^
 
     /**
@@ -271,6 +289,19 @@ public class Guide extends FragmentActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //グローバル変数を取得(2016_11_05_19_40 TAKAYA)
+        global = (global_values)this.getApplication();
+//        userID = global.user;
+        userID = "ytakaya";
+        latitude_Destination = global.latitude_final;
+        longitude_Destination = global.longitude_final;
+        //TAKAYAここまで
+
+
+
+
+
 
 //        インテント間の受け渡し
         // 現在のintentを取得する
@@ -536,9 +567,70 @@ public class Guide extends FragmentActivity implements
 //            最終目的地か中継地点かの判断（relayの座標とdestinationの座標が同じ場合，最終目的地）
             if(latitude_RelayPoint == latitude_Destination && longitude_RelayPoint == longitude_Destination){
                 Toast.makeText(getApplicationContext(), "最終目的地にGOAL！！", Toast.LENGTH_LONG).show();
-            }
+
+
+                //2016_11_05_19_40 crated by TAKAYA
+                url_getitem = "http://localchara.jp/services/api//search/location/character?api_key="
+                        +api_key_gotouchi+"&ll="+latitude_CurrentPoint+","+longitude_CurrentPoint+"&counts="+30;
+
+                get_gotouchi = new getItemDataAsync();
+                try {
+                    json_postitem = get_gotouchi.execute(url_getitem).get();
+
+                } catch (InterruptedException e) {e.printStackTrace();}
+                catch (ExecutionException e) {e.printStackTrace();}
+
+
+                Toast toast = Toast.makeText(getApplicationContext(), json_postitem, Toast.LENGTH_SHORT);
+                toast.show();
+
+
+                url_post_server = "http://192.168.20.23:3000/zukan/:"+userID;
+
+                post_server_async = new post_server_Async();
+
+                post_server_async.execute(url_post_server,json_postitem);
+                //TAKAYAここまで
+
+
+
+
+
+
+        }
             else{
                 Toast.makeText(getApplicationContext(), "中継地点にGOAL！！", Toast.LENGTH_LONG).show();
+
+
+                //2016_11_05_19_40 crated by TAKAYA
+                url_getitem = "http://localchara.jp/services/api//search/location/character?api_key="
+                        +api_key_gotouchi+"&ll="+latitude_CurrentPoint+","+longitude_CurrentPoint+"&counts="+30;
+
+                get_gotouchi = new getItemDataAsync();
+                try {
+                    json_postitem = get_gotouchi.execute(url_getitem).get();
+
+                } catch (InterruptedException e) {e.printStackTrace();}
+                catch (ExecutionException e) {e.printStackTrace();}
+
+
+                Toast toast = Toast.makeText(getApplicationContext(), json_postitem, Toast.LENGTH_SHORT);
+                toast.show();
+
+
+                url_post_server = "http://192.168.20.23:3000/zukan/:"+userID;
+
+                post_server_async = new post_server_Async();
+
+                post_server_async.execute(url_post_server,json_postitem);
+                //TAKAYAここまで
+
+
+
+
+
+
+
             }
         }
         //    ===================================================================================^

@@ -181,12 +181,12 @@ public class questrip_root_Activity extends Activity implements LocationListener
         char_collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                char_collection.setText("　＞ご当地キャラ図鑑をみる　　　");
-//                enable_button();
-//                select_mode(char_collection);
-//                Intent intent=new Intent();
-//                intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.questrip_setting_Activity");
-//                startActivity(intent);
+                char_collection.setText("　＞ご当地キャラ図鑑をみる　　　");
+                enable_button();
+                select_mode(char_collection);
+                Intent intent=new Intent();
+                intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.questrip_collection_Activity");
+                startActivity(intent);
             }
         });
     }

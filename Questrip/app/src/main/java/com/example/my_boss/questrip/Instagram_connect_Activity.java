@@ -186,11 +186,17 @@ public class Instagram_connect_Activity extends FragmentActivity implements
      */
     private GoogleApiClient client;
 
+    global_values global;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instagram_connection_main);
+
+
+        global = (global_values)this.getApplication();
+
 
         //プログレス
         progressDialog = new ProgressDialog(this);
@@ -584,8 +590,8 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 //                ###########################################################
 //                tapped_marker[0] = 34.69428345331;
 //                tapped_marker[1] = 135.19914027303;
-                tapped_marker[0] = 34.69162119;
-                tapped_marker[1] = 135.192208036;
+                tapped_marker[0] = latitude;
+                tapped_marker[1] = longitude;
 //                ###########################################################
 
                 intent.putExtra("latitude_relaypoint", tapped_marker[0]);
@@ -608,10 +614,10 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 //                tapped_marker[1] = 135.1965938508;
 //                tapped_marker[0] = 34.692455;
 //                tapped_marker[1] = 135.191861;
-                tapped_marker[0] = 34.691621191;
-                tapped_marker[1] = 135.192208036;
+                tapped_marker[0] = global.latitude_final;
+                tapped_marker[1] = global.longitude_final;
 //                tapped_marker[0] = goal_latitude;
-//                tapped_marker[1] = goal_longitude;
+//                tapped_marker[1] = goal_longitude;s
 //                ###########################################################
 
                 intent.putExtra("latitude_relaypoint", tapped_marker[0]);

@@ -112,10 +112,15 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
     private String image_url[] = new String[50];        //JSONデータからimage部分のみをパースしてここに入れる．その後imageBuilderAsyncへ
     private Bitmap image_of_character;                  //ご当地キャラの画像データ
 
+
+    global_values global;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
+
+        global = (global_values)this.getApplication();
 
         //全部が入ってるLayout
         layout = (RelativeLayout)findViewById(R.id.ll);
@@ -399,8 +404,12 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
                         // インテントの生成
                         Intent intent=new Intent();
                         intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.Instagram_connect_Activity");
-                        intent.putExtra("latitude",String.valueOf(latitude));
-                        intent.putExtra("longitude",String.valueOf(longitude));
+
+                        global.latitude_final = latitude;
+                        global.longitude_final = longitude;
+
+//                        intent.putExtra("latitude",String.valueOf(latitude));
+//                        intent.putExtra("longitude",String.valueOf(longitude));
                         intent.putExtra("hour",String.valueOf(hour));
                         intent.putExtra("minute",String.valueOf(minute));
 
