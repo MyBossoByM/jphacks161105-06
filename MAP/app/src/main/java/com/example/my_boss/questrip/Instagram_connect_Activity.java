@@ -103,7 +103,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     private Uri.Builder builder[] = new Uri.Builder[50];
     private Uri.Builder gotouchi_builder;
 
-    private int NUM_PIN = 10;
+    private int NUM_PIN = 30;
 
 //    private Localization localization = new Localization();     //Localizationオブジェクト
 
@@ -125,16 +125,11 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
     private String json_getplace;   //AsynvtaskでgetしたJsonオブジェクト
     private String json_getitem;    //画像取得用Asynctaskから取得したJSON
-    private long crrent_place_id;                   //現在の場所ID
-    private long place_id[] = new long[NUM_PIN];      //場所ID
-    private String current_place_name; //現在地地名
-    private String place_name[] = new String[NUM_PIN]; //地名
-    private double current_latitude_fromJson;     //場所リクエストから取得した現在地の緯度
-    private double current_longitude_fromJson;    //場所リクエストから取得した現在地の経度
-    private double latitude_fromJson[] = new double[NUM_PIN];     //場所リクエストから取得した緯度
-    private double longitude_fromJson[] = new double[NUM_PIN];    //場所リクエストから取得した経度
-    private LatLng current_latlng_fromJson;                                   //googlemapにピンを立てる際の（緯度，経度）格納庫
-    private LatLng latlng_fromJson[] = new LatLng[NUM_PIN];       //googlemapにピンを立てる際の（緯度，経度）格納庫
+    private long place_id[] = new long[NUM_PIN + 1];      //場所ID
+    private String place_name[] = new String[NUM_PIN + 1]; //地名
+    private double latitude_fromJson[] = new double[NUM_PIN + 1];     //場所リクエストから取得した緯度
+    private double longitude_fromJson[] = new double[NUM_PIN + 1];    //場所リクエストから取得した経度
+    private LatLng latlng_fromJson[] = new LatLng[NUM_PIN + 1];       //googlemapにピンを立てる際の（緯度，経度）格納庫
 
     private String images[] = new String[300];
     public Uri uri[] = new Uri[300];
@@ -155,8 +150,8 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     //-------------本田追加----------------
     public boolean light_version = false;   // 「周囲を探す」モード選択時true
     public boolean time_out = false;
-    public Marker realy_marker;
     public Marker goal_marker;
+    public Marker relay_marker;
     //-------------------------------------
 
     private RecyclerView recyclerView;
@@ -170,7 +165,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
     private Button go_there;
     private Button go_final;
-
 
     private String image_url;
     private Bitmap image_of_character;
@@ -193,11 +187,15 @@ public class Instagram_connect_Activity extends FragmentActivity implements
      */
     private GoogleApiClient client;
 
+    global_values global;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instagram_connection_main);
+
+        global = (global_values)this.getApplication();
 
         //プログレス
         progressDialog = new ProgressDialog(this);
@@ -211,7 +209,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             goal_longitude = Double.parseDouble(intent.getStringExtra("longitude"));
             goal_hour = Integer.parseInt(intent.getStringExtra("hour"));
             goal_minute = Integer.parseInt(intent.getStringExtra("minute"));
-            light_version = false;
         } else {
             goal_latitude = -1.0;
             goal_longitude = -1.0;
@@ -267,7 +264,8 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    double tapped_marker[] = new double[2];    // 現在タップされているマーカーを表示
+    public double tapped_marker[] = new double[2];    // 現在タップされているマーカーを表示
+    public double tapping_marker[] = new double[2];    // 現在タップされているマーカーを表示
     String tapped_marker_name;
 
     @Override
@@ -279,6 +277,21 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         gMap = googleMap;   //googleMap操作用ハンドラセット
         gMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
+        // 現在地ボタンの表示
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        gMap.setMyLocationEnabled(true);
+        UiSettings settings = gMap.getUiSettings();
+        settings.setMyLocationButtonEnabled(true);
+
         // 最終目的地点にピン立て
         // ピン立てをCurrent_Distination_Time()内で行っている
         if (!light_version) {
@@ -286,7 +299,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             gMap.addMarker(new MarkerOptions().position(goal_position).title("最終目的地")
                     .icon(BitmapDescriptorFactory.defaultMarker(150)));
         }
-        Current_Distination_Time(latitude, longitude, goal_latitude, goal_longitude);
+//        Current_Distination_Time(latitude, longitude, goal_latitude, goal_longitude);
 
         //url_getplace：場所取得リクエストURL(latitude，longitude：現在地の緯度，経度 access_token：アクセストークン，distance：情報取得の範囲)
         url_getplace = "https://api.instagram.com/v1/locations/search?" + "lat=" + latitude + "&lng=" + longitude + "&distance=" + 100 + "&access_token=" + access_token + "&count=" + NUM_PIN;
@@ -299,23 +312,18 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             //ここから取得したJsonをパース
             jsonData = new JSONObject(json_getplace);
             JSONArray datas = jsonData.getJSONArray("data");
-            current_latlng_fromJson = new LatLng(latitude, longitude);     //latlng_fromJson[0]には現在位置を格納
-            current_place_name = "現在地";
+            latlng_fromJson[0] = new LatLng(latitude, longitude);     //latlng_fromJson[0]には現在位置を格納
+            place_name[0] = "現在地";
 
             //latlng_fromJson[1]以降はinstagramから取得した緯度，経度を格納
             for (int i = 0; i < datas.length(); i++) {
                 JSONObject data = datas.getJSONObject(i);
                 // 名前を取得
-                place_name[i] = data.getString("name");
-                System.out.println(place_name[i]);
-                if(i == 0) {
-                    current_latitude_fromJson = Double.parseDouble(data.getString("latitude"));
-                    current_longitude_fromJson = Double.parseDouble(data.getString("longitude"));
-                } else {
-                    latitude_fromJson[i-1] = Double.parseDouble(data.getString("latitude"));
-                    longitude_fromJson[i-1] = Double.parseDouble(data.getString("longitude"));
-                    latlng_fromJson[i-1] = new LatLng(latitude_fromJson[i-1], longitude_fromJson[i-1]);
-                }
+                place_name[i+1] = data.getString("name");
+                latitude_fromJson[i] = Double.parseDouble(data.getString("latitude"));
+                longitude_fromJson[i] = Double.parseDouble(data.getString("longitude"));
+                latlng_fromJson[i+1] = new LatLng(latitude_fromJson[i], longitude_fromJson[i]);
+                System.out.println("latlng: "+latlng_fromJson[i+1]);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -330,12 +338,11 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
         //マップの処理
         if (gMap != null) {
-            for (int count = 0; count < latlng_fromJson.length-1; count++) {
+            for (int count = 0; count < latlng_fromJson.length - 1; count++) {
                 if (count == 0) {
                     // 現在地へのピン立て
-                    gMap.addMarker(new MarkerOptions().position(current_latlng_fromJson).title(current_place_name)
+                    gMap.addMarker(new MarkerOptions().position(latlng_fromJson[count]).title(place_name[count])
                             .icon(BitmapDescriptorFactory.defaultMarker(200)));
-                    gMap.addMarker(new MarkerOptions().position(latlng_fromJson[count]).title(place_name[count]));
 //                    if(light_version) {
 //                        LatLng goal_position = new LatLng(goal_latitude, goal_longitude);
 //                        gMap.addMarker(new MarkerOptions().position(goal_position).title("最終目的地")
@@ -346,7 +353,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                     gMap.addMarker(new MarkerOptions().position(latlng_fromJson[count]).title(place_name[count]));
                 }
             }
-            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng_fromJson[0], 15)); //latlngに指定されている場所へカメラ移動
+            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng_fromJson[0], 18)); //latlngに指定されている場所へカメラ移動
         }
 
 
@@ -370,7 +377,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                             //ここから取得したJsonをパース
                             jsonData = new JSONObject(json_getplace);
                             JSONArray datas = jsonData.getJSONArray("data");
-                            current_latlng_fromJson = new LatLng(latitude, longitude);     //latlng_fromJson[0]には現在位置を格納
+                            latlng_fromJson[0] = new LatLng(latitude, longitude);     //latlng_fromJson[0]には現在位置を格納
 
                             //latlng_fromJson[1]以降はinstagramから取得した緯度，経度を格納
                             for (int i = 0; i < datas.length(); i++) {
@@ -394,14 +401,24 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                         JSONObject jsonData_getitem = null; //画像取得用Asyncから戻ってきたJsonを格納するオブジェクト
                         int count_tmp = 0;
                         final ArrayList<Bitmap> list = new ArrayList();
-                        for (int count = 0; count < latlng_fromJson.length; count++) {
-                            count_tmp = count;
+                        for (int count = 0; count < latlng_fromJson.length - 1; count++) {
+                            count_tmp += 1;
                             String id = "m" + count;
                             if (marker.getId().equals("m0")) {
-                                System.out.println("0だよ");
+                                System.out.println("tap_lat: "+latitude_fromJson[count]);
+                                System.out.println("tap_lng: "+longitude_fromJson[count]);
+                                System.out.println("tap_id: "+id);
                                 break;
                             } else if (marker.getId().equals(id)) {
-                                System.out.println(id+ "だよ");
+                                tapping_marker[0] = latitude_fromJson[count-1];
+                                tapping_marker[1] = longitude_fromJson[count-1];
+                                tapped_marker_name = place_name[count];
+                                System.out.println("入った");
+                                System.out.println("tap_lat: "+tapping_marker[0]);
+                                System.out.println("tap_lng: "+tapping_marker[1]);
+                                System.out.println("tap_name: "+tapped_marker_name);
+                                System.out.println("tap_id: "+id);
+                                Current_Relay_Time(latitude, longitude, tapping_marker[0], tapping_marker[1]);
 //                        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_LONG).show();
                                 task_getitem = new getItemDataAsync();  //画像取得用Asynctaskのnew
                                 //場所id(place_id)を用いてアイテムデータをJsonオブジェクトで取得
@@ -418,25 +435,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-
-                                tapped_marker[0] = latitude_fromJson[count-2];
-                                tapped_marker[1] = longitude_fromJson[count-2];
-                                tapped_marker_name = place_name[count-2];
-                                Current_Relay_Time(latitude, longitude, tapped_marker[0], tapped_marker[1]);
-                                break;
-//                                if(light_version) {
-//                                    tapped_marker[0] = latitude_fromJson[count-1];
-//                                    tapped_marker[1] = longitude_fromJson[count-1];
-//                                    tapped_marker_name = place_name[count];
-//                                    Current_Relay_Time(latitude, longitude, latitude_fromJson[count_tmp], longitude_fromJson[count_tmp]);
-//                                } else {
-//                                    if(count - 2 > 0) {
-//                                        tapped_marker[0] = latitude_fromJson[count-2];
-//                                        tapped_marker[1] = longitude_fromJson[count-2];
-//                                        tapped_marker_name = place_name[count-1];
-//                                        Current_Relay_Time(latitude, longitude, latitude_fromJson[count_tmp], longitude_fromJson[count_tmp]);
-//                                    }
-//                                }
                             }
                         }
 
@@ -461,12 +459,11 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                                     }
                                     list.add(gazou[count_datas]);
                                 }
-
-
                             } catch (JSONException e) {
 //                        e.printStackTrace();
                             }
                         }
+
 //                Toast.makeText(this, String.valueOf(images[0]), Toast.LENGTH_LONG).show();
                         handler.post(new Runnable() {   //---------------------------------------------------------------
                             @Override
@@ -474,9 +471,10 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                             public void run() {         //---------------------------------------------------------------
                                 recyclerView.setAdapter(new RecyclerAdapter(getApplicationContext(), list));
                             }                           //---------------------------------------------------------------
-                        });
+                        });                             //---------------------------------------------------------------
                     }
                 }).start();                             //---------------------------------------------------------------
+
                 return false;
             }
         });
@@ -543,7 +541,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         latitude = location.getLatitude();
         longitude = location.getLongitude();
 //        Toast.makeText(this, "位置が変わりました", Toast.LENGTH_LONG).show();
-
     }
 
     //providerが変わった時
@@ -570,10 +567,22 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             public void onClick(View v) {
                 // ボタンがクリックされた時に呼び出されます
                 //インテントの作成
-//                Intent intent=new Intent();
-//                intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.questrip_setting_there_Activity");
-//                startActivity(intent);
 
+                System.out.println("=-=-=-=-=-=-= go there -=-=-=-=-=-=");
+                System.out.println(tapped_marker[0]);
+                System.out.println(tapped_marker[1]);
+                System.out.println("=-=-=-=-=-=-= go there -=-=-=-=-=-=");
+
+                Intent intent=new Intent();
+                intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.Guide");
+
+                tapped_marker[0] = tapping_marker[0];
+                tapped_marker[1] = tapping_marker[1];
+
+                intent.putExtra("latitude_relaypoint", tapped_marker[0]);
+                intent.putExtra("longitude_relaypoint", tapped_marker[1]);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -581,11 +590,16 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         go_final.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                // ボタンがクリックされた時に呼び出されます
-//                Intent intent=new Intent();
-//                intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.questrip_setting_there_Activity");
-//                startActivity(intent);
+                Intent intent=new Intent();
+                intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.Guide");
 
+                tapped_marker[0] = global.latitude_final;
+                tapped_marker[1] = global.longitude_final;
+
+                intent.putExtra("latitude_relaypoint", tapped_marker[0]);
+                intent.putExtra("longitude_relaypoint", tapped_marker[1]);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -716,511 +730,11 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     }//--------------------------------------------------------------------------------ここまで dyamashita
 
 
-//    //    ルート関連===================================================================================v
-//
-//    public int time_data[] = new int[2];
-//    public int h = 0;
-//    public int m = 0;
-//    public int routeTime_Current_Distination = 0;
-//    public int routeTime_Current_Relay_Distination = 0;
-//    public int routeTime_Current_Relay = 0;
-//
-//    //    時間出力（現在地から目的地）
-//    private void Current_Distination_Time
-//    (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Destination, double lng_Destination){
-//        int time = 0;
-//
-//        mapManager_store(0);
-//        routeSearch_Current_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_Destination, lng_Destination);
-//    }
-//
-//    //    時間出力とマップに経路表示（現在地から目的地）
-//    private void Current_Distination_Map
-//    (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Destination, double lng_Destination){
-//        int time = 0;
-//
-//        mapManager_store(1);
-//        routeSearch_Current_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_Destination, lng_Destination);
-//    }
-//
-//    //    時間出力（現在地から中継地点を介して目的地）
-//    private void Current_Relay_Distination_Time
-//    (double lat_CurrentPoint, double lng_CurrentPoint, double lat_RelayPoint, double lng_RelayPoint, double lat_Destination, double lng_Destination){
-//        int time = 0;
-//
-//        mapManager_store(2);
-//        routeSearch_Current_Relay_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_RelayPoint, lng_RelayPoint, lat_Destination, lng_Destination);
-//    }
-//
-//    //    時間出力とマップに経路表示（現在地から中継地点を介して目的地）
-//    private void Current_Relay_Distination_Map
-//    (double lat_CurrentPoint, double lng_CurrentPoint, double lat_RelayPoint, double lng_RelayPoint, double lat_Destination, double lng_Destination){
-//        int time = 0;
-//
-//        mapManager_store(3);
-//        routeSearch_Current_Relay_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_RelayPoint, lng_RelayPoint, lat_Destination, lng_Destination);
-//    }
-//
-//    //    時間出力（現在地から中継地点）
-//    private void Current_Relay_Time
-//    (double lat_CurrentPoint, double lng_CurrentPoint, double lat_RelayPoint, double lng_RelayPoint){
-//        int time = 0;
-//
-//        mapManager_store(4);
-//        routeSearch_Current_Relay(lat_CurrentPoint, lng_CurrentPoint, lat_RelayPoint, lng_RelayPoint);
-//    }
-//
-//    //    時間出力とマップに経路表示（現在地から中継地点）
-//    private void Current_Relay_Map
-//    (double lat_CurrentPoint, double lng_CurrentPoint, double lat_RelayPoint, double lng_RelayPoint){
-//        int time = 0;
-//
-//        mapManager_store(5);
-//        routeSearch_Current_Relay(lat_CurrentPoint, lng_CurrentPoint, lat_RelayPoint, lng_RelayPoint);
-//    }
-//
-//    private int flag_of_mapManager = 0;       // ルートの時間探索時のマップを表示するかのフラグ
-//    private void mapManager_store(int flag){
-//        flag_of_mapManager = flag;
-//    }
-//
-//    private int mapManager_output(){
-//        return flag_of_mapManager;
-//    }
-//
-//    private void timeManager_Current_Distination_initialize(){
-//        routeTime_Current_Distination = 0;
-//        System.out.println("====-----====----- Current_Distination_time_initialize ====-----====-----");
-//        System.out.println(routeTime_Current_Distination);
-//    }
-//
-//    private void timeManager_Current_Distination_store(int time){
-//        routeTime_Current_Distination = time;
-//        System.out.println("====-----====----- Current_Distination ====-----====-----");
-//        System.out.println(routeTime_Current_Distination);
-//
-//        time_data = MinutesToTime(routeTime_Current_Distination);
-//        Calendar calendar = Calendar.getInstance();
-//        h = calendar.get(calendar.HOUR_OF_DAY);
-//        h = h + time_data[0];
-//        if(h >= 24) h = h - 24;
-//        m = calendar.get(calendar.MINUTE);
-//        m = m + time_data[1];
-//        if(m >= 60) {
-//            m = m - 60;
-//            h = h + 1;
-//        }
-//        if(h > goal_hour) time_out = true;
-//        else if(h == goal_hour && m > goal_minute) time_out = true;
-//        else time_out = false;
-//        if(goal_hour < 0) time_out = false;
-//        if(light_version) time_out = false;
-//
-//        LatLng goal = new LatLng(goal_latitude, goal_longitude);
-//        if(!light_version) {
-//            goal_marker = gMap.addMarker(new MarkerOptions()
-//                    .position(goal)
-//                    .title("最終目的地")
-//                    .snippet("到着予定時刻 " +h+ "時" +m+ "分")
-//                    .icon(BitmapDescriptorFactory.defaultMarker(150)));
-//        } else {
-//            goal_marker = gMap.addMarker(new MarkerOptions()
-//                    .position(goal)
-//                    .title("現在地")
-//                    .icon(BitmapDescriptorFactory.defaultMarker(200)));
-//        }
-//        goal_marker.showInfoWindow();
-//    }
-//
-//    private void timeManager_Current_Relay_Distination_store(int time){
-//        routeTime_Current_Relay_Distination = time;
-//        System.out.println("====-----====----- Current_Distination ====-----====-----");
-//        System.out.println(routeTime_Current_Relay_Distination);
-//
-//    }
-//
-//
-//
-//    private void timeManager_Current_Relay_store(int time){
-//        routeTime_Current_Relay = time;
-//        System.out.println("====-----====----- Current_Relay ====-----====-----");
-//        System.out.println(routeTime_Current_Relay);
-//
-//        time_data = MinutesToTime(routeTime_Current_Relay);
-//        Calendar calendar = Calendar.getInstance();
-//        h = calendar.get(calendar.HOUR_OF_DAY);
-//        h = h + time_data[0];
-//        if(h >= 24) h = h - 24;
-//        m = calendar.get(calendar.MINUTE);
-//        m = m + time_data[1];
-//        if(m >= 60) {
-//            m = m - 60;
-//            h = h + 1;
-//        }
-//        if(h > goal_hour) time_out = true;
-//        else if(h == goal_hour && m > goal_minute) time_out = true;
-//        else time_out = false;
-//        if(goal_hour < 0) time_out = false;
-//        if(light_version) time_out = false;
-//
-//
-//        LatLng relay = new LatLng(tapped_marker[0], tapped_marker[1]);
-//        System.out.println("0:" +tapped_marker[0]);
-//        System.out.println("1:" +tapped_marker[1]);
-//        realy_marker = gMap.addMarker(new MarkerOptions()
-//                .position(relay)
-//                .title(tapped_marker_name)
-//                .snippet("到着予定時刻 " +h+ "時" +m+ "分"));
-//        realy_marker.showInfoWindow();
-//    }
-//
-//    public int[] MinutesToTime(int minutes) {
-//        int time[] = new int[2];
-//        int hour = 0;
-//        int minute  = minutes;
-//        while(true) {
-//            if(minute < 60) break;
-//            hour += 1;
-//            minute = minutes - 60;
-//        }
-//        time[0] = hour;
-//        time[1] = minute;
-//
-//        return time;
-//    }
-
-//    ===================================================================================^
-
-
-    //以下，経路時間探索処理（トリガー：関数routeSearch()）
-////    ===================================================================================v
-//    private void routeSearch_Current_Distination
-//    (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Destination, double lng_Destination){
-//        //progressDialog.show();
-//
-////        ここに現在地と目的地の経路の座標を求めるところ
-//        String url = getDirectionsUrl_Current_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_Destination, lng_Destination);
-//
-//        DownloadTask downloadTask = new DownloadTask();
-//
-//        downloadTask.execute(url);
-//
-//    }
-//
-//    private void routeSearch_Current_Relay_Distination
-//            (double lat_CurrentPoint, double lng_CurrentPoint, double lat_RelayPoint, double lng_RelayPoint, double lat_Destination, double lng_Destination){
-//        //progressDialog.show();
-//
-////        ここに現在地と目的地の経路の座標を求めるところ
-//        String url = getDirectionsUrl_Current_Relay_Dinsination(lat_CurrentPoint, lng_CurrentPoint, lat_RelayPoint, lng_RelayPoint, lat_Destination, lng_Destination);
-//
-//        DownloadTask downloadTask = new DownloadTask();
-//
-//        downloadTask.execute(url);
-//
-//    }
-//
-//    private void routeSearch_Current_Relay
-//            (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Relay, double lng_Relay){
-//        //progressDialog.show();
-//
-////        ここに現在地と目的地の経路の座標を求めるところ
-//        String url = getDirectionsUrl_Current_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_Relay, lng_Relay);
-//
-//        DownloadTask downloadTask = new DownloadTask();
-//
-//        downloadTask.execute(url);
-//    }
-//
-//    private String getDirectionsUrl_Current_Distination
-//            (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Destination, double lng_Destination){
-//
-//        String str_origin = "origin="+lat_CurrentPoint+","+lng_CurrentPoint;
-//        String str_dest = "destination="+lat_Destination+","+lng_Destination;
-//
-//        String sensor = "sensor=false";
-//
-//        //パラメータ
-//        String parameters = str_origin+"&"+str_dest+"&"+sensor + "&language=ja" + "&mode=walking";
-//
-//        //JSON指定
-//        String output = "json";
-//
-//        String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
-//
-//        return url;
-//    }
-//
-//    private String getDirectionsUrl_Current_Relay_Dinsination
-//            (double lat_CurrentPoint, double lng_CurrentPoint, double lat_RelayPoint, double lng_RelayPoint, double lat_Destination, double lng_Destination){
-//
-//        String str_origin = "origin="+lat_CurrentPoint+","+lng_CurrentPoint;
-//        String str_relay = "waypoints="+lat_RelayPoint+","+lng_RelayPoint;
-//        String str_dest = "destination="+lat_Destination+","+lng_Destination;
-//
-//        String sensor = "sensor=false";
-//
-//        //パラメータ
-//        String parameters = str_origin+"&"+str_dest+"&"+str_relay+"&"+sensor + "&language=ja" + "&mode=walking";
-//
-//        //JSON指定
-//        String output = "json";
-//
-//        String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
-//
-//        return url;
-//    }
-
-
-//    以下，クラス ================================================
-//
-//    private class DownloadTask extends AsyncTask<String, Void, String> {
-//        //非同期で取得
-//
-//        @Override
-//        protected String doInBackground(String... url) {
-//
-//            String data = "";
-//
-//            try{
-//                data = downloadUrl(url[0]);
-//            }catch(Exception e){
-//            }
-//            return data;
-//        }
-
-//        private String downloadUrl(String strUrl) throws IOException {
-//            String data = "";
-//            InputStream iStream = null;
-//            HttpURLConnection urlConnection = null;
-//            try{
-//                URL url = new URL(strUrl);
-//
-//
-//                urlConnection = (HttpURLConnection) url.openConnection();
-//
-//
-//                urlConnection.connect();
-//
-//
-//                iStream = urlConnection.getInputStream();
-//
-//                BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
-//
-//                StringBuffer sb = new StringBuffer();
-//
-//                String line = "";
-//                while( ( line = br.readLine()) != null){
-//                    sb.append(line);
-//                }
-//
-//                data = sb.toString();
-//
-//                br.close();
-//
-//            }catch(Exception e){
-//                Log.d("Exception download url", e.toString());
-//            }finally{
-//                iStream.close();
-//                urlConnection.disconnect();
-//            }
-//
-//            return data;
-//        }
-
-//        // doInBackground()
-//        @Override
-//        protected void onPostExecute(String result) {
-//            super.onPostExecute(result);
-//
-//            int routetime = 0;
-//
-//            switch (mapManager_output()) {
-//                case 0:
-//                    ParserTask_Time parserTask_Time = new ParserTask_Time();
-//                    routetime = parserTask_Time.get_time(result);
-//                    System.out.println(routetime);
-//                    System.out.println("====-----====----- case 0 ====-----====-----");
-//                    timeManager_Current_Distination_store(routetime);
-//                    break;
-//                case 1:
-//                    //マップまで表示する
-//                    ParserTask_Map parserTask_Map = new ParserTask_Map();
-//                    routetime = parserTask_Map.get_time(result);
-//                    parserTask_Map.execute(result);
-//                    System.out.println("====-----====----- case 1 ====-----====-----");
-//                    timeManager_Current_Distination_store(routetime);
-//                    break;
-//                case 2:
-//                    ParserTask_Time parserTask_Time2 = new ParserTask_Time();
-//                    routetime = parserTask_Time2.get_time(result);
-//                    System.out.println(routetime);
-//                    System.out.println("====-----====----- case 2 ====-----====-----");
-//                    timeManager_Current_Relay_Distination_store(routetime);
-//                    break;
-//                case 3:
-//                    //マップまで表示する
-//                    ParserTask_Map parserTask_Map2 = new ParserTask_Map();
-//                    routetime = parserTask_Map2.get_time(result);
-//                    parserTask_Map2.execute(result);
-//                    System.out.println("====-----====----- case 3 ====-----====-----");
-//                    timeManager_Current_Relay_Distination_store(routetime);
-//                    break;
-//                case 4:
-//                    ParserTask_Time parserTask_Time3 = new ParserTask_Time();
-//                    routetime = parserTask_Time3.get_time(result);
-//                    System.out.println(routetime);
-//                    System.out.println("====-----====----- case 4 ====-----====-----");
-//                    timeManager_Current_Relay_store(routetime);
-//                    break;
-//                case 5:
-//                    //マップまで表示する
-//                    ParserTask_Map parserTask_Map3 = new ParserTask_Map();
-//                    routetime = parserTask_Map3.get_time(result);
-//                    parserTask_Map3.execute(result);
-//                    System.out.println("====-----====----- case 5 ====-----====-----");
-//                    timeManager_Current_Relay_store(routetime);
-//                    break;
-//                default:
-//
-//            }
-//        }
-//    }
-//
-//    //    結果が帰ってくる(時間出力のみ)
-//    /*parse the Google Places in JSON format */
-//    private class ParserTask_Time {
-//        // 引数 : [現在地と最終目的地点の緯度・経度の配列]
-//        int get_time(String... jsonData) {
-//
-//            JSONObject jObject;
-//            int routes_time = 0;
-//            Object value[] = new Object[2];
-//
-//            try{
-//                jObject = new JSONObject(jsonData[0]);
-//                parseJsonpOfDirectionAPI parser = new parseJsonpOfDirectionAPI();
-//
-//                // parse()により時間とルートを取得
-//                value = parser.parse(jObject);
-//                routes_time = (int)value[1];
-//            }catch(Exception e){
-//                e.printStackTrace();
-//            }
-//
-//            progressDialog.hide();
-//            return routes_time;
-//        }
-//    }
-
-//    // クラス「ParserTask_Map」内のポリライン表示に使用する変数
-//    public int display_route = 0;   // 表示するルート
-//    public Polyline route_1;        // display_route == 1
-//    public Polyline route_2;        // display_route == 2
-
-//    //    結果が帰ってくる（時間出力，マップ案内）
-//    /*parse the Google Places in JSON format */
-//    private class ParserTask_Map extends AsyncTask<String, Integer, List<List<HashMap<String,String>>> > {
-//
-//        // 引数 : [現在地と最終目的地点の緯度・経度の配列]
-//        int get_time(String... jsonData) {
-//
-//            JSONObject jObject;
-//            int routes_time = 0;
-//            Object value[] = new Object[2];
-//
-//            try{
-//                jObject = new JSONObject(jsonData[0]);
-//                parseJsonpOfDirectionAPI parser = new parseJsonpOfDirectionAPI();
-//
-//                // parse()により時間とルートを取得
-//                value = parser.parse(jObject);
-//                routes_time = (int)value[1];
-//            }catch(Exception e){
-//                e.printStackTrace();
-//            }
-//
-//            progressDialog.hide();
-//            return routes_time;
-//        }
-//
-//        @Override
-//        protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
-//
-//            JSONObject jObject;
-//            List<List<HashMap<String, String>>> routes = null;
-//
-//            Object value[] = new Object[2];
-//
-//            try{
-//                jObject = new JSONObject(jsonData[0]);
-//                parseJsonpOfDirectionAPI parser = new parseJsonpOfDirectionAPI();
-//
-//                value = parser.parse(jObject); // タスクを投げる 返り値が結果
-//            }catch(Exception e){
-//                e.printStackTrace();
-//            }
-//
-//            System.out.println("================------------------------================");
-//            System.out.println(value[1]);
-//            System.out.println("================------------------------================");
-//
-//            return (List<List<HashMap<String, String>>>) value[0];
-//        }
-//
-//        //ルート検索で得た座標を使って経路表示
-//        @Override
-//        protected void onPostExecute(List<List<HashMap<String, String>>> result) {
-//            ArrayList<LatLng> points = null;
-//            PolylineOptions lineOptions = null;
-//            MarkerOptions markerOptions = new MarkerOptions();
-//
-//            if(result.size() != 0){
-//
-//                for(int i=0;i<result.size();i++){
-//                    points = new ArrayList<LatLng>();
-//                    lineOptions = new PolylineOptions();
-//
-//                    List<HashMap<String, String>> path = result.get(i);
-//
-//
-//                    for(int j=0;j<path.size();j++){
-//                        HashMap<String,String> point = path.get(j);
-//
-//                        double lat = Double.parseDouble(point.get("lat"));
-//                        double lng = Double.parseDouble(point.get("lng"));
-//                        LatLng position = new LatLng(lat, lng);
-//
-//                        points.add(position);
-//                    }
-//
-//                    //ポリライン
-//                    lineOptions.addAll(points);
-//                    lineOptions.width(10);
-//                    lineOptions.color(Color.BLUE);
-//                }
-//
-//                //描画
-//                if(display_route == 0){
-//                    route_1 = gMap.addPolyline(lineOptions);
-//                    display_route = 2;
-//                } else if(display_route == 1) {
-//                    route_2.remove();
-//                    route_1 = gMap.addPolyline(lineOptions);
-//                    display_route = 2;
-//                } else if (display_route == 2){
-//                    route_1.remove();
-//                    route_2 = gMap.addPolyline(lineOptions);
-//                    display_route = 1;
-//                }
-//            }else{
-//                //gMap.clear();
-//                Toast.makeText(getApplicationContext(), "行き先をタップしてください", Toast.LENGTH_LONG).show();
-//            }
-//            progressDialog.hide();
-//        }
-//
-//    }
+    //    //    ルート関連===================================================================================v
+//
+    public int time_data[] = new int[2];
+    public int h = 0;
+    public int m = 0;
 
 
     //    ===================================================================================v
@@ -1330,9 +844,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         client.disconnect();
     }
 
-    public int time_data[] = new int[2];
-    public int h = 0;
-    public int m = 0;
+
 
     //    時間出力（現在地から目的地）
     private void Current_Distination_Time
@@ -1469,35 +981,36 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         if(goal_hour < 0) time_out = false;
         if(light_version) time_out = false;
 
-
-        LatLng relay = new LatLng(tapped_marker[0], tapped_marker[1]);
-        System.out.println("0:" +tapped_marker[0]);
-        System.out.println("1:" +tapped_marker[1]);
-        realy_marker = gMap.addMarker(new MarkerOptions()
+        LatLng relay = new LatLng(tapping_marker[0], tapping_marker[1]);
+        System.out.println("aftertap0:" +tapping_marker[0]);
+        System.out.println("aftertap1:" +tapping_marker[1]);
+        relay_marker = gMap.addMarker(new MarkerOptions()
                 .position(relay)
                 .title(tapped_marker_name)
                 .snippet("到着予定時刻 " +h+ "時" +m+ "分"));
-        realy_marker.showInfoWindow();
+        relay_marker.showInfoWindow();
     }
 
     public int[] MinutesToTime(int minutes) {
+        System.out.println("------------------- ここ  ---------------------");
         int time[] = new int[2];
         int hour = 0;
         int minute  = minutes;
         while(true) {
             if(minute < 60) break;
             hour += 1;
-            minute = minutes - 60;
+            minute = minute - 60;
         }
         time[0] = hour;
         time[1] = minute;
 
+        System.out.println("------------------- ここまで  ---------------------");
         return time;
     }
 
 
 
-//    以下，経路時間探索処理（トリガー：関数routeSearch()）
+    //    以下，経路時間探索処理（トリガー：関数routeSearch()）
 //    ===================================================================================v
     private void routeSearch_Current_Distination
     (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Destination, double lng_Destination){
@@ -1871,10 +1384,8 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             TextView snippetUi = ((TextView) view.findViewById(R.id.snippet));
             if (snippet != null) {
                 SpannableString snippetText = new SpannableString(snippet);
-                if (!time_out)
-                    snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 0, snippet.length(), 0);
-                if (time_out)
-                    snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, snippet.length(), 0);
+                if (!time_out) snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 0, snippet.length(), 0);
+                else snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, snippet.length(), 0);
                 snippetUi.setText(snippetText);
             } else {
                 snippetUi.setText("");

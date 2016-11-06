@@ -76,6 +76,7 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
     private Button yes;                 //「はい」ボタン
     private Button no;                  //「いいえ」ボタン
     private MapFragment mapFragment;    //マップ表示のFragment
+    private Bitmap bitmap;
 
     private int step = -1;              //質問ステップを管理
 
@@ -112,10 +113,14 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
     private String image_url[] = new String[50];        //JSONデータからimage部分のみをパースしてここに入れる．その後imageBuilderAsyncへ
     private Bitmap image_of_character;                  //ご当地キャラの画像データ
 
+    global_values global;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
+
+        global = (global_values)this.getApplication();
 
         //全部が入ってるLayout
         layout = (RelativeLayout)findViewById(R.id.ll);
@@ -168,7 +173,7 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
         //いろんな初期処理 画像取得しないとなのでここ---------------------
         locationStart();            //現在地取得
         onGetAddress();             //現在の位置情報から都道府県を取得
-        onGetMascotLocation();      //都道府県から県庁の位置情報を取得
+        if(area!=null) onGetMascotLocation();      //都道府県から県庁の位置情報を取得
         image_getter();             //県庁の位置情報から
         //-------------------------------------------------
 
@@ -181,7 +186,7 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
         int width = image_of_character.getWidth();      //サイズ直す用
         int height = image_of_character.getHeight();    //サイズ直す用
         // ↓ 画像の大きさを統一
-        Bitmap bitmap = Bitmap.createScaledBitmap(image_of_character,
+        bitmap = Bitmap.createScaledBitmap(image_of_character,
                 (disp.getHeight()/5)*width/height, disp.getHeight()/5, false);
         mascot = (ImageView) findViewById(R.id.character);  //imageViewにセット
         mascot.setImageBitmap(bitmap);                      //画像を登録
@@ -203,7 +208,7 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
                 });
         //-------------------------------------------------
 
-        //現在地とか目標地をMapで表示するためのFragment
+        //現在地とか目標地をMapで表示するためのFragmentlag_of_mapManager = flag;
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mapFrame.setVisibility(View.INVISIBLE);    //最初は隠す
@@ -396,12 +401,16 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         // インテントの生成
                         Intent intent=new Intent();
                         intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.Instagram_connect_Activity");
-                        intent.putExtra("latitude",String.valueOf(latitude));
-                        intent.putExtra("longitude",String.valueOf(longitude));
+
+                        global.latitude_final = latitude;
+                        global.longitude_final = longitude;
+                        global.bitmap = bitmap;
+
+//                        intent.putExtra("latitude",String.valueOf(latitude));
+//                        intent.putExtra("longitude",String.valueOf(longitude));
                         intent.putExtra("hour",String.valueOf(hour));
                         intent.putExtra("minute",String.valueOf(minute));
 
@@ -482,15 +491,15 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // 最新GPS値取得
-        Location nowLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        Location nowLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         // GPS地の更新（第一引数：provider（network または gps），第二引数：minTime（位置情報を取得する最小時間）
         // 第三引数：minDistance（位置情報を取得する最小距離），第四引数：listener（リスナーを実装しているクラス）
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 10, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 100, this);
 
-        latitude = nowLocation.getLatitude();       //最新GPS値の緯度を格納
-        longitude = nowLocation.getLongitude();     //最新GPS値の経度を格納
+        latitude=nowLocation.getLatitude();       //最新GPS値の緯度を格納
+        longitude=nowLocation.getLongitude();     //最新GPS値の経度を格納
 
-        final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (!gpsEnabled) {
             // GPSを設定するように促す
             Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -500,10 +509,10 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
             Log.d("debug", "gpsEnabled");
         }
         if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
             Log.d("debug", "checkSelfPermission false");
             return;
         }
@@ -530,7 +539,8 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
             Address addr = lstAddr.get(0);
             area = addr.getAdminArea();
         }
-        getMascotLocation();
+        if (area!=null) getMascotLocation();
+        else {mascotLatitude=latitude; mascotLongitude=longitude;}
     }
 
     //都道府県から県庁の位置情報を取得-------------------------------------

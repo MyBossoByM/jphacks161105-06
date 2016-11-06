@@ -66,27 +66,6 @@
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/power">
 
-            <TextView
-                android:text=""
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#99000000"
-                android:textColor="#FFFFFFFF"
-                android:textSize="14sp"
-                android:id="@+id/textView"
-                android:minLines="2"
-                android:minEms="12"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                app:srcCompat="@color/cast_intro_overlay_button_background_color"
-                android:id="@+id/imageView"
-                android:layout_weight="3"
-                android:layout_height="match_parent" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -115,35 +94,58 @@
         android:layout_alignParentBottom="true">
 
         <Button
-            android:text="ここへ行く"
+            android:text="マップを更新する"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/button_go_there"
+            android:id="@+id/button_route_update"
             android:layout_weight="1" />
 
         <Button
-            android:text="最終目的地へGO"
+            android:text="目的地を変更する"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/button_go_final"
+            android:id="@+id/button_go_distination"
             android:layout_weight="1" />
+
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <RelativeLayout
         android:id="@+id/recyclerview"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="#77000000"
+        android:background="@drawable/frame2"
         android:textColor="#ffffff"
-        tools:context=".MainActivity"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_above="@+id/bottonll"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="29dp" />
+        android:layout_marginBottom="29dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:scaleType="fitCenter"
+            android:id="@+id/mascot"
+            android:background="#FFFFFF"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="                           "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:id="@+id/message"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
 </RelativeLayout>
 
