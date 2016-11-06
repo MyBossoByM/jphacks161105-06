@@ -149,7 +149,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
     //-------------本田追加----------------
     public boolean light_version = false;   // 「周囲を探す」モード選択時true
-    public static boolean time_out = false;
+    public boolean time_out = false;
     public Marker goal_marker;
     public Marker relay_marker;
     //-------------------------------------
@@ -212,17 +212,9 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         } else {
             goal_latitude = -1.0;
             goal_longitude = -1.0;
-            if(intent.getStringExtra("hour") == null) {
-                System.out.println(intent.getStringExtra("hour"));
-                goal_hour = 0;
-                goal_minute = 0;
-                light_version = true;
-            } else {
-                goal_hour = Integer.parseInt(intent.getStringExtra("hour"));
-                goal_minute = Integer.parseInt(intent.getStringExtra("minute"));
-                light_version = true;
-
-            }
+            goal_hour = -1;
+            goal_minute = -1;
+            light_version = true;
         }
 
         //        Toast.makeText(getApplicationContext(), image_url, Toast.LENGTH_LONG).show();
@@ -361,7 +353,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                     gMap.addMarker(new MarkerOptions().position(latlng_fromJson[count]).title(place_name[count]));
                 }
             }
-            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng_fromJson[0], 15)); //latlngに指定されている場所へカメラ移動
+            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng_fromJson[0], 18)); //latlngに指定されている場所へカメラ移動
         }
 
 
@@ -584,8 +576,8 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                 Intent intent=new Intent();
                 intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.Guide");
 
-                tapped_marker[0] = latitude;
-                tapped_marker[1] = longitude;
+                tapped_marker[0] = tapping_marker[0];
+                tapped_marker[1] = tapping_marker[1];
 
                 intent.putExtra("latitude_relaypoint", tapped_marker[0]);
                 intent.putExtra("longitude_relaypoint", tapped_marker[1]);
@@ -983,32 +975,11 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             m = m - 60;
             h = h + 1;
         }
-        System.out.println("goal_hour:  " +goal_hour);
-        System.out.println("goal_minute:  " +goal_minute);
-        System.out.println("h:  " +h);
-        System.out.println("m:  " +m);
-        System.out.println("light version:  "+light_version);
-        if(h > goal_hour) {
-            this.time_out = true;
-            System.out.println("1:true");
-
-        }
-        else if(h == goal_hour && m > goal_minute) {
-            this.time_out = true;
-            System.out.println("2:true");
-        }
-        else {
-            this.time_out = false;
-            System.out.println("3:false");
-        }
-        if(goal_hour < 0) {
-            this.time_out = false;
-            System.out.println("goal_hour<0:false");
-        }
-        if(light_version) {
-            this.time_out = false;
-            System.out.println("light_version==true:false");
-        }
+        if(h > goal_hour) time_out = true;
+        else if(h == goal_hour && m > goal_minute) time_out = true;
+        else time_out = false;
+        if(goal_hour < 0) time_out = false;
+        if(light_version) time_out = false;
 
         LatLng relay = new LatLng(tapping_marker[0], tapping_marker[1]);
         System.out.println("aftertap0:" +tapping_marker[0]);
@@ -1413,8 +1384,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             TextView snippetUi = ((TextView) view.findViewById(R.id.snippet));
             if (snippet != null) {
                 SpannableString snippetText = new SpannableString(snippet);
-                System.out.println("snippet color:  "+ Instagram_connect_Activity.time_out);
-                if (Instagram_connect_Activity.time_out) snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 0, snippet.length(), 0);
+                if (!time_out) snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 0, snippet.length(), 0);
                 else snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, snippet.length(), 0);
                 snippetUi.setText(snippetText);
             } else {

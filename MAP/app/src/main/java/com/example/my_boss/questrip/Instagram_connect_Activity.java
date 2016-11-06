@@ -1385,7 +1385,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             if (snippet != null) {
                 SpannableString snippetText = new SpannableString(snippet);
                 if (!time_out) snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 0, snippet.length(), 0);
-                else snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, snippet.length(), 0);
+                if (time_out) snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, snippet.length(), 0);
                 snippetUi.setText(snippetText);
             } else {
                 snippetUi.setText("");

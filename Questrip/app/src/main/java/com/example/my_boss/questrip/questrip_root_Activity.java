@@ -193,6 +193,7 @@ public class questrip_root_Activity extends Activity implements LocationListener
         start_from_here.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                global.point = 0;
                 start_from_here.setText("　＞ここから冒険をはじめる　　　");
                 buttonOf();
                 select_mode(start_from_here);
@@ -213,6 +214,7 @@ public class questrip_root_Activity extends Activity implements LocationListener
         start_from_there.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                global.point = 0;
                 start_from_there.setText("　＞違う場所から冒険をはじめる　");
                 buttonOf();
                 select_mode(start_from_there);
@@ -232,6 +234,7 @@ public class questrip_root_Activity extends Activity implements LocationListener
         search_around.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                global.point = 0;
                 search_around.setText("　＞周辺のスポットまで冒険する　");
                 buttonOf();
                 select_mode(search_around);

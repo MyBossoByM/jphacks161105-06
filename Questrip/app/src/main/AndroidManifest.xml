@@ -39,6 +39,7 @@
         <activity android:name=".questrip_setting_there_Activity"></activity>
         <activity android:name=".input"></activity>
         <activity android:name=".Guide"></activity>
+        <activity android:name=".questrip_waypoint_goal_Activity"></activity>
 
         <!--<activity android:name=".questrip_root_Activity"></activity>-->
 
@@ -48,7 +49,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCslAc5j2rLbBOJ2GhK53_hFJvc2cF27SU"/>
+            android:value="AIzaSyBKbxrK7_2SCbn2hCy9kh9UIevyod91scg"/>
 
     </application>
 

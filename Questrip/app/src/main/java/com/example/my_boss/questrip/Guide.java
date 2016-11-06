@@ -18,10 +18,12 @@
 package com.example.my_boss.questrip;
 
 //styles.xml にNo action bar を記述
+//プログレス通知はすべて消す
+
 
 import android.*;
 import android.Manifest;
-import android.app.ProgressDialog;
+//import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -105,7 +107,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
-import android.app.ProgressDialog;
+//import android.app.ProgressDialog;
 
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.UiSettings;
@@ -145,7 +147,7 @@ public class Guide extends FragmentActivity implements
 
     public static MarkerOptions options;
 
-    public ProgressDialog progressDialog;
+//    public ProgressDialog progressDialog;
 
     public String travelMode = "walking";//default driving
 
@@ -241,7 +243,7 @@ public class Guide extends FragmentActivity implements
 //                        現在地を更新
                     currentLocation();
 
-                     mMap.clear();
+                    mMap.clear();
 //                        現在から目的地
 //                      Current_Distination_Time(latitude_CurrentPoint, longitude_CurrentPoint, latitude_Destination, longitude_Destination);
 //                      Current_Distination_Map(latitude_CurrentPoint, longitude_CurrentPoint, latitude_Destination, longitude_Destination);
@@ -322,7 +324,6 @@ public class Guide extends FragmentActivity implements
             }
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -331,7 +332,7 @@ public class Guide extends FragmentActivity implements
         //グローバル変数を取得(2016_11_05_19_40 TAKAYA)
         global = (global_values)this.getApplication();
 //        userID = global.user;
-        userID = "takaya";
+        userID = "ytakaya";
         latitude_Destination = global.latitude_final;
         longitude_Destination = global.longitude_final;
         //TAKAYAここまで
@@ -380,10 +381,10 @@ public class Guide extends FragmentActivity implements
 //        mMap = mapFragment.getMapAsync(this);
 
         //プログレス
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("CALCULATION");
-        progressDialog.hide();
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        progressDialog.setMessage("CALCULATION");
+//        progressDialog.hide();
 
         //初期化
         markerPoints = new ArrayList<LatLng>();
@@ -410,9 +411,6 @@ public class Guide extends FragmentActivity implements
 
         findViewById(R.id.button_route_update).setOnClickListener(this);
         findViewById(R.id.button_go_distination).setOnClickListener(this);
-
-
-
 
 //    ===================================================================================^
 
@@ -505,7 +503,7 @@ public class Guide extends FragmentActivity implements
         currentLocation();
         LatLng latlng_current = new LatLng(latitude_CurrentPoint, longitude_CurrentPoint);    //緯度と経度格納（将来的には配列化してinstagramから取得した緯度，経度情報を格納？）
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng_current, 15)); //latlngに指定されている場所へカメラ移動
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng_current, 18)); //latlngに指定されている場所へカメラ移動
 
         Current_Relay_Map(latitude_CurrentPoint, longitude_CurrentPoint,latitude_RelayPoint, longitude_RelayPoint);
         RelayPointPointing(mMap);
@@ -637,6 +635,7 @@ public class Guide extends FragmentActivity implements
 
     public void judge(){
         //        中継地点との距離
+//        Toast.makeText(this, "judge："+goal_Judge, Toast.LENGTH_LONG).show();
         currentLocation();
         //    ===================================================================================v
         float[] results = new float[1];
@@ -655,7 +654,7 @@ public class Guide extends FragmentActivity implements
             goal_Judge = true;
 //            最終目的地か中継地点かの判断（relayの座標とdestinationの座標が同じ場合，最終目的地）
             if(latitude_RelayPoint == latitude_Destination && longitude_RelayPoint == longitude_Destination){
-                Toast.makeText(getApplicationContext(), "最終目的地にGOAL！！", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "最終目的地にGOAL！！", Toast.LENGTH_LONG).show();
 
 
                 //2016_11_05_19_40 created by TAKAYA
@@ -670,18 +669,26 @@ public class Guide extends FragmentActivity implements
                 catch (ExecutionException e) {e.printStackTrace();}
 
 
-                Toast toast = Toast.makeText(getApplicationContext(), json_postitem, Toast.LENGTH_SHORT);
-                toast.show();
+//                Toast toast = Toast.makeText(getApplicationContext(), json_postitem, Toast.LENGTH_SHORT);
+//                toast.show();
 
 
-                url_post_server = "http://192.168.20.32:3000/zukan/:"+userID;
+                url_post_server = "http://192.168.20.23:3000/zukan/:"+userID;
 
                 post_server_async = new post_server_Async();
 
                 post_server_async.execute(url_post_server,json_postitem);
                 //TAKAYAここまで
-        } else{
-                Toast.makeText(getApplicationContext(), "中継地点にGOAL！！", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent();
+                intent.setClassName("com.example.my_boss.questrip", "com.example.my_boss.questrip.questrip_waypoint_goal_Activity");
+                startActivity(intent);
+                finish();
+
+            }
+            else{
+
+//                Toast.makeText(getApplicationContext(), "中継地点にGOAL！！", Toast.LENGTH_LONG).show();
 
 
                 //2016_11_05_19_40 crated by TAKAYA
@@ -698,13 +705,17 @@ public class Guide extends FragmentActivity implements
 //                Toast toast = Toast.makeText(getApplicationContext(), json_postitem, Toast.LENGTH_SHORT);
 //                toast.show();
 
-                url_post_server = "http://192.168.20.32:3000/zukan/:"+userID;
+                url_post_server = "http://192.168.20.23:3000/zukan/:"+userID;
 
                 post_server_async = new post_server_Async();
 
                 post_server_async.execute(url_post_server,json_postitem);
                 //TAKAYAここまで
 
+                Intent intent = new Intent();
+                intent.setClassName("com.example.my_boss.questrip", "com.example.my_boss.questrip.questrip_waypoint_goal_Activity");
+                startActivity(intent);
+                finish();
 
             }
         }
@@ -758,18 +769,18 @@ public class Guide extends FragmentActivity implements
 
         mHandler = new Handler();
         mTimer = new Timer();
-        mTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        judge();
-                    }
-                });
-            }
-        }, 1000, 10000); // 実行したい間隔(ミリ秒)
+//        mTimer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//
+//                mHandler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        judge();
+//                    }
+//                });
+//            }
+//        }, 1000, 10000); // 実行したい間隔(ミリ秒)
 
         //文字表示専用スレッド
         mmHandler = new Handler();
@@ -780,16 +791,34 @@ public class Guide extends FragmentActivity implements
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        String str = "";
-                        int random = (int) (Math.random() * 3) + 1;
-                        if (random == 1) str = "どんどん進もう";
-                        else if (random == 2) str = "少し休憩するかい？";
-                        else if (random == 3) str = "もう少しだ";
-                        put_text = "";
-                        put_word = "";
-                        i = 0;
-                        put_txt = str;
-                        handler.sendEmptyMessage(1);
+
+                        judge();
+
+                        if(goal_Judge == false){
+//                            コンテンツ決定
+                            put_text = "";
+                            put_word = "";
+                            i = 0;
+                            put_txt = talkContents();
+                            handler.sendEmptyMessage(1);
+                        }
+                        else{
+                            put_text = "";
+                            put_word = "";
+                            i = 0;
+                            put_txt = "到着したようだね。\nお疲れ様．．．";
+                            handler.sendEmptyMessage(1);
+                        }
+//                        String str = "";
+//                        int random = (int) (Math.random() * 3) + 1;
+//                        if (random == 1) str = "どんどん進もう";
+//                        else if (random == 2) str = "少し休憩するかい？";
+//                        else if (random == 3) str = "もう少しだ";
+//                        put_text = "";
+//                        put_word = "";
+//                        i = 0;
+//                        put_txt = str;
+//                        handler.sendEmptyMessage(1);
                     }
                 });
             }
@@ -800,6 +829,59 @@ public class Guide extends FragmentActivity implements
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
         com.google.android.gms.appindexing.AppIndex.AppIndexApi.start(client, getIndexApiAction());
     }
+
+    private String talkContents(){
+//          現在地取得
+//        currentLocation();
+//        到着までの時間を取得
+//        Current_Relay_Time(latitude_CurrentPoint,longitude_CurrentPoint,latitude_RelayPoint,longitude_RelayPoint);
+//        到着までの時間でセリフを変更（routeTime_Current_Relay）
+        String serif = "";
+        float[] results = new float[1];
+        Location.distanceBetween(latitude_CurrentPoint, longitude_CurrentPoint, latitude_RelayPoint, longitude_RelayPoint, results);
+        int random = (int) (Math.random() * 3);
+        if(results[0] < 50){
+            switch(random){
+                case 0:
+                    serif = "もう少しだ．．．\n";
+                    break;
+                case 1:
+                    serif = "近いな．．．";
+                    break;
+                case 2:
+                    serif = "油断すると道に迷うからね";
+                    break;
+            }
+        }
+        else if(results[0] < 300){
+            switch(random){
+                case 0:
+                    serif = "左のボタンで\n経路を再探索できるよ";
+                    break;
+                case 1:
+                    serif = "気をつけて歩くんだよ";
+                    break;
+                case 2:
+                    serif = "景色はどうだ？";
+                    break;
+            }
+        }
+        else{
+            switch(random){
+                case 0:
+                    serif = "まだ遠い．．．";
+                    break;
+                case 1:
+                    serif = "右のボタンで\n行き先を変更できるよ";
+                    break;
+                case 2:
+                    serif = "道のりは険しさを増す．．．";
+                    break;
+            }
+        }
+        return serif;
+    }
+
 
     // 文字列を一文字ずつ出力するハンドラ------------------------
     private Handler handler = new Handler() {
@@ -943,7 +1025,7 @@ public class Guide extends FragmentActivity implements
 //    ===================================================================================v
     private void routeSearch_Current_Distination
     (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Destination, double lng_Destination){
-        progressDialog.show();
+//        progressDialog.show();
 
 //        ここに現在地と目的地の経路の座標を求めるところ
         String url = getDirectionsUrl_Current_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_Destination, lng_Destination);
@@ -956,7 +1038,7 @@ public class Guide extends FragmentActivity implements
 
     private void routeSearch_Current_Relay_Distination
             (double lat_CurrentPoint, double lng_CurrentPoint, double lat_RelayPoint, double lng_RelayPoint, double lat_Destination, double lng_Destination){
-        progressDialog.show();
+//        progressDialog.show();
 
 //        ここに現在地と目的地の経路の座標を求めるところ
         String url = getDirectionsUrl_Current_Relay_Dinsination(lat_CurrentPoint, lng_CurrentPoint, lat_RelayPoint, lng_RelayPoint, lat_Destination, lng_Destination);
@@ -969,7 +1051,7 @@ public class Guide extends FragmentActivity implements
 
     private void routeSearch_Current_Relay
             (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Relay, double lng_Relay){
-        progressDialog.show();
+//        progressDialog.show();
 
 //        ここに現在地と目的地の経路の座標を求めるところ
         String url = getDirectionsUrl_Current_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_Relay, lng_Relay);
@@ -1156,7 +1238,7 @@ public class Guide extends FragmentActivity implements
                 e.printStackTrace();
             }
 
-            progressDialog.hide();
+//            progressDialog.hide();
             return routes_time;
         }
     }
@@ -1183,7 +1265,7 @@ public class Guide extends FragmentActivity implements
                 e.printStackTrace();
             }
 
-            progressDialog.hide();
+//            progressDialog.hide();
             return routes_time;
         }
 
@@ -1252,7 +1334,7 @@ public class Guide extends FragmentActivity implements
                 mMap.clear();
 //                Toast.makeText("ルート情報を取得できませんでした", Toast.LENGTH_LONG).show();
             }
-            progressDialog.hide();
+//            progressDialog.hide();
 
         }
     }

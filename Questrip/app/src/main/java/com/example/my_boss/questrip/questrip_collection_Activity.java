@@ -27,7 +27,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class questrip_collection_Activity extends Activity {
-    private int IMAGE_NUM = 100;
+    private int IMAGE_NUM = 20;
 
     private List<Bitmap> imgList = new ArrayList<Bitmap>();  //ご当地キャラ画像を格納するList
     private GridView gridview;  //gridviewオブジェクト

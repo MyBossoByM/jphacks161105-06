@@ -17,6 +17,7 @@ public class global_values extends Application {
     double latitude_final;
     double longitude_final;
     Bitmap bitmap;
+    int point;
 
     public static Context globalContext;
 
