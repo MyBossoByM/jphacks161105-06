@@ -147,12 +147,10 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     public int goal_hour;
     public int goal_minute;
 
-    //-------------本田追加----------------
     public boolean light_version = false;   // 「周囲を探す」モード選択時true
     public boolean time_out = false;
     public Marker goal_marker;
     public Marker relay_marker;
-    //-------------------------------------
 
     private RecyclerView recyclerView;
     private RelativeLayout gameframe;
@@ -216,8 +214,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             goal_minute = -1;
             light_version = true;
         }
-
-        //        Toast.makeText(getApplicationContext(), image_url, Toast.LENGTH_LONG).show();
 
         //20161031追加 by dyamashita
         message = (TextView) findViewById(textView);
@@ -318,7 +314,7 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             //latlng_fromJson[1]以降はinstagramから取得した緯度，経度を格納
             for (int i = 0; i < datas.length(); i++) {
                 JSONObject data = datas.getJSONObject(i);
-                // 名前を取得
+                // 地名・店名を取得
                 place_name[i+1] = data.getString("name");
                 latitude_fromJson[i] = Double.parseDouble(data.getString("latitude"));
                 longitude_fromJson[i] = Double.parseDouble(data.getString("longitude"));
@@ -343,11 +339,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                     // 現在地へのピン立て
                     gMap.addMarker(new MarkerOptions().position(latlng_fromJson[count]).title(place_name[count])
                             .icon(BitmapDescriptorFactory.defaultMarker(200)));
-//                    if(light_version) {
-//                        LatLng goal_position = new LatLng(goal_latitude, goal_longitude);
-//                        gMap.addMarker(new MarkerOptions().position(goal_position).title("最終目的地")
-//                                .icon(BitmapDescriptorFactory.defaultMarker(150)));
-//                    }
                 } else {
                     // 候補中継地点のピン立て
                     gMap.addMarker(new MarkerOptions().position(latlng_fromJson[count]).title(place_name[count]));
@@ -360,11 +351,11 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         //マーカがタップされた時の処理
         gMap.setOnMarkerClickListener(new OnMarkerClickListener() {
             public boolean onMarkerClick(final Marker marker) {
-                final Handler handler = new Handler();   //ここ------------------------------------------------------------
-                recyclerView.setAdapter(null);          //---------------------------------------------------------------
+                final Handler handler = new Handler();
+                recyclerView.setAdapter(null);
                 new Thread(new Runnable() {
                     @Override
-                    public void run() {            //---------------------------------------------------------------
+                    public void run() {
 
                         //url_getplace：場所取得リクエストURL(latitude，longitude：現在地の緯度，経度 access_token：アクセストークン，distance：情報取得の範囲)
                         url_getplace = "https://api.instagram.com/v1/locations/search?" + "lat=" + latitude + "&lng=" + longitude + "&distance=" + 100 + "&access_token=" + access_token + "&count=" + NUM_PIN;
@@ -384,11 +375,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                                 JSONObject data = datas.getJSONObject(i);
                                 // 名前を取得
                                 place_id[i] = Long.parseLong(data.getString("id"));
-
-//                        latitude_fromJson[i] = Double.parseDouble(data.getString("latitude"));
-
-//                        longitude_fromJson[i] = Double.parseDouble(data.getString("longitude"));
-//                        latlng_fromJson[i+1] = new LatLng(latitude_fromJson[i],longitude_fromJson[i]);
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -399,10 +385,8 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                         }
 
                         JSONObject jsonData_getitem = null; //画像取得用Asyncから戻ってきたJsonを格納するオブジェクト
-                        int count_tmp = 0;
                         final ArrayList<Bitmap> list = new ArrayList();
                         for (int count = 0; count < latlng_fromJson.length - 1; count++) {
-                            count_tmp += 1;
                             String id = "m" + count;
                             if (marker.getId().equals("m0")) {
                                 System.out.println("tap_lat: "+latitude_fromJson[count]);
@@ -419,12 +403,12 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                                 System.out.println("tap_name: "+tapped_marker_name);
                                 System.out.println("tap_id: "+id);
                                 Current_Relay_Time(latitude, longitude, tapping_marker[0], tapping_marker[1]);
-//                        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_LONG).show();
+
                                 task_getitem = new getItemDataAsync();  //画像取得用Asynctaskのnew
                                 //場所id(place_id)を用いてアイテムデータをJsonオブジェクトで取得
                                 url_getitem = "https://api.instagram.com/v1/locations/" + String.valueOf(place_id[count]) + "/media/recent?access_token=" + access_token;// リクエストURL
                                 try {
-                                    json_getitem = task_getitem.execute(url_getitem).get();   //画像取得Asynctaskを実行し，doInbackgroundの返り値をjson_getitemに格納
+                                    json_getitem = task_getitem.execute(url_getitem).get();     //画像取得Asynctaskを実行し，doInbackgroundの返り値をjson_getitemに格納
                                     //ここから画像取得Asyncで取得したJsonをパース
                                     jsonData_getitem = new JSONObject(json_getitem);
                                     media_datas = jsonData_getitem.getJSONArray("data");
@@ -439,7 +423,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                         }
 
                         //2016_10_24_12:15
-                        //現在はmarkerID = 0の時にmedia_datasの中身が0となってしまうため，現在地のマーカをタップするとヌルポが発生してしまう
                         if (media_datas != null) {
                             try {
                                 for (int count_datas = 0; count_datas < media_datas.length(); count_datas++) {
@@ -447,7 +430,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                                     images[count_datas] = data.getJSONObject("images").getJSONObject("thumbnail").getString("url");
                                     uri[count_datas] = Uri.parse(images[count_datas]);
                                     builder[count_datas] = uri[count_datas].buildUpon();
-
 
                                     task_imageBuild = new imageBuilderAsync(imageview);
                                     try {
@@ -460,21 +442,17 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                                     list.add(gazou[count_datas]);
                                 }
                             } catch (JSONException e) {
-//                        e.printStackTrace();
                             }
                         }
 
-//                Toast.makeText(this, String.valueOf(images[0]), Toast.LENGTH_LONG).show();
-                        handler.post(new Runnable() {   //---------------------------------------------------------------
+                        handler.post(new Runnable() {
                             @Override
-                            //---------------------------------------------------------------
-                            public void run() {         //---------------------------------------------------------------
+                            public void run() {
                                 recyclerView.setAdapter(new RecyclerAdapter(getApplicationContext(), list));
-                            }                           //---------------------------------------------------------------
-                        });                             //---------------------------------------------------------------
+                            }
+                        });
                     }
-                }).start();                             //---------------------------------------------------------------
-
+                }).start();
                 return false;
             }
         });
@@ -498,7 +476,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         }
 
         final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-//        final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         if (!gpsEnabled) {
             if (!gpsEnabled) {
                 // GPSを設定するように促す
@@ -526,9 +503,8 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
                 locationStart();
                 return;
-
             } else {
-                // それでも拒否された時の対応
+                // 拒否された時の対応
                 Toast toast = Toast.makeText(this, "これ以上なにもできません", Toast.LENGTH_SHORT);
                 toast.show();
             }
@@ -540,25 +516,21 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     public void onLocationChanged(Location location) {
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-//        Toast.makeText(this, "位置が変わりました", Toast.LENGTH_LONG).show();
     }
 
     //providerが変わった時
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-
     }
 
     //providerが利用可能になった時
     @Override
     public void onProviderEnabled(String provider) {
-
     }
 
     //providerが利用不可になった時
     @Override
     public void onProviderDisabled(String provider) {
-
     }
 
     void setClickListener() {
@@ -567,12 +539,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             public void onClick(View v) {
                 // ボタンがクリックされた時に呼び出されます
                 //インテントの作成
-
-                System.out.println("=-=-=-=-=-=-= go there -=-=-=-=-=-=");
-                System.out.println(tapped_marker[0]);
-                System.out.println(tapped_marker[1]);
-                System.out.println("=-=-=-=-=-=-= go there -=-=-=-=-=-=");
-
                 Intent intent=new Intent();
                 intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.Guide");
 
@@ -585,7 +551,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                 finish();
             }
         });
-
 
         go_final.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -602,40 +567,30 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                 finish();
             }
         });
-
     }
 
 
     void image_getter(String url) {
         //-------------ご当地キャラget用のasynctask 2016_10_25 by Takaya-----------------------------
-
         try {
             gotouchi_builder = Uri.parse(url).buildUpon();
-
 
             task_imageBuild = new imageBuilderAsync();
             image_of_character = task_imageBuild.execute(gotouchi_builder).get();
 
-
             System.out.println(json_getitem);
-//            Toast.makeText(this, String.valueOf(datas.length()), Toast.LENGTH_LONG).show();
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
-
-        //-------------------------------------------------------------------------------------------------------
-
     }
 
     //ここからLayout的な処理追加しました by dyamashita------------------------------------------------------------
     @Override
     public void onStart() {
         super.onStart();// ATTENTION: This was auto-generated to implement the App Indexing API.
-// See https://g.co/AppIndexing/AndroidStudio for more information.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
 
         setView();
@@ -645,7 +600,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -727,17 +681,12 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         layout.addView(text,lp2);
         layout.addView(botton,lp4);
         layout.addView(recyclerView,lp3);
-    }//--------------------------------------------------------------------------------ここまで dyamashita
+    }
 
-
-    //    //    ルート関連===================================================================================v
-//
+    // ルート関連===================================================================================v
     public int time_data[] = new int[2];
     public int h = 0;
     public int m = 0;
-
-
-    //    ===================================================================================v
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
@@ -753,23 +702,17 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
     public static MarkerOptions options;
 
-//    public ProgressDialog progressDialog;
-
     public String travelMode = "walking";//default driving
 
     //    現在地
     public double latitude_CurrentPoint = 34.80058444;       //適当な緯度
     public double longitude_CurrentPoint = 135.76810719;       //適当な経度
 
-    //    中継地点（すきや）
+    //    中継地点
     public double latitude_RelayPoint = 34.813731;       //適当な緯度
     public double longitude_RelayPoint = 135.771333;       //適当な経度
 
-    //    中継地点（しおん）
-//    public double latitude_RelayPoint = 34.813731;       //適当な緯度
-//    public double longitude_RelayPoint = 135.771333;       //適当な経度
-
-    //    目的地 34.802556297454004,135.53884506225586
+    //    目的地
     public double latitude_Destination = 34.80542380559208;       //適当な緯度
     public double longitude_Destination = 135.7782707735896;       //適当な経度
 
@@ -777,46 +720,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     private int routeTime_Current_Distination = 1;       // ルートの時間探索のときにマップを表示するかのフラグ
     private int routeTime_Current_Relay_Distination = 2;// ルートの時間探索のときにマップを表示するかのフラグ
     public int routeTime_Current_Relay = 3;
-
-    //    直線距離から到着したか判定
-    private float goal_Judge = 20;
-    private boolean tapFragment_help = true;
-    private boolean tapFragment_relay = true;
-    private boolean tapFragment_dist = true;
-
-
-    //    結合の際の変数の変換
-    private void variable_tran() {
-        //    現在地
-        latitude_CurrentPoint = latitude;
-        longitude_CurrentPoint = longitude;
-
-        //    中継地点
-        latitude_RelayPoint = tapped_marker[0];
-        longitude_RelayPoint = tapped_marker[1];
-
-        //    目的地
-        latitude_Destination = goal_latitude;
-        longitude_Destination = goal_longitude;
-    }
-
-    //    現在地点の更新
-    private void currentLocation() {
-        //    ----------------------------------------------------------------v
-        // LocationManager インスタンス生成
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            return;
-        }
-
-        //GPS地の更新（第一引数：provider（network または gps），第二引数：minTime（位置情報を取得する最小時間），第三引数：minDistance（位置情報を取得する最小距離），第四引数：listener（リスナーを実装しているクラス）
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime_GPS, minDistance_GPS, this);
-
-        Location CurrentLocation = locationManager.getLastKnownLocation("gps");     //最新のGPS値の取得
-        latitude_CurrentPoint = CurrentLocation.getLatitude();       //最新GPS値の緯度を格納
-        longitude_CurrentPoint = CurrentLocation.getLongitude();     //最新GPS値の経度を格納
-    }
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -843,8 +746,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
-
-
 
     //    時間出力（現在地から目的地）
     private void Current_Distination_Time
@@ -916,8 +817,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
     private void timeManager_Current_Distination_store(int time){
         routeTime_Current_Distination = time;
-        System.out.println("====-----====----- Current_Distination ====-----====-----");
-        System.out.println(routeTime_Current_Distination);
 
         time_data = MinutesToTime(routeTime_Current_Distination);
         Calendar calendar = Calendar.getInstance();
@@ -954,15 +853,10 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
     private void timeManager_Current_Relay_Distination_store(int time){
         routeTime_Current_Relay_Distination = time;
-        System.out.println("====-----====----- Current_Distination ====-----====-----");
-        System.out.println(routeTime_Current_Relay_Distination);
-
     }
 
     private void timeManager_Current_Relay_store(int time){
         routeTime_Current_Relay = time;
-        System.out.println("====-----====----- Current_Relay ====-----====-----");
-        System.out.println(routeTime_Current_Relay);
 
         time_data = MinutesToTime(routeTime_Current_Relay);
         Calendar calendar = Calendar.getInstance();
@@ -982,8 +876,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         if(light_version) time_out = false;
 
         LatLng relay = new LatLng(tapping_marker[0], tapping_marker[1]);
-        System.out.println("aftertap0:" +tapping_marker[0]);
-        System.out.println("aftertap1:" +tapping_marker[1]);
         relay_marker = gMap.addMarker(new MarkerOptions()
                 .position(relay)
                 .title(tapped_marker_name)
@@ -992,7 +884,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
     }
 
     public int[] MinutesToTime(int minutes) {
-        System.out.println("------------------- ここ  ---------------------");
         int time[] = new int[2];
         int hour = 0;
         int minute  = minutes;
@@ -1003,46 +894,36 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         }
         time[0] = hour;
         time[1] = minute;
-
-        System.out.println("------------------- ここまで  ---------------------");
         return time;
     }
 
 
 
     //    以下，経路時間探索処理（トリガー：関数routeSearch()）
-//    ===================================================================================v
     private void routeSearch_Current_Distination
     (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Destination, double lng_Destination){
-        //progressDialog.show();
 
-//        ここに現在地と目的地の経路の座標を求めるところ
+        // ここに現在地と目的地の経路の座標を求めるところ
         String url = getDirectionsUrl_Current_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_Destination, lng_Destination);
 
         DownloadTask downloadTask = new DownloadTask();
 
         downloadTask.execute(url);
-
     }
 
     private void routeSearch_Current_Relay_Distination
             (double lat_CurrentPoint, double lng_CurrentPoint, double lat_RelayPoint, double lng_RelayPoint, double lat_Destination, double lng_Destination){
-        //progressDialog.show();
-
-//        ここに現在地と目的地の経路の座標を求めるところ
+        // ここに現在地と目的地の経路の座標を求めるところ
         String url = getDirectionsUrl_Current_Relay_Dinsination(lat_CurrentPoint, lng_CurrentPoint, lat_RelayPoint, lng_RelayPoint, lat_Destination, lng_Destination);
 
         DownloadTask downloadTask = new DownloadTask();
 
         downloadTask.execute(url);
-
     }
 
     private void routeSearch_Current_Relay
             (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Relay, double lng_Relay){
-        //progressDialog.show();
-
-//        ここに現在地と目的地の経路の座標を求めるところ
+        // ここに現在地と目的地の経路の座標を求めるところ
         String url = getDirectionsUrl_Current_Distination(lat_CurrentPoint, lng_CurrentPoint, lat_Relay, lng_Relay);
 
         DownloadTask downloadTask = new DownloadTask();
@@ -1052,7 +933,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
 
     private String getDirectionsUrl_Current_Distination
             (double lat_CurrentPoint, double lng_CurrentPoint, double lat_Destination, double lng_Destination){
-
         String str_origin = "origin="+lat_CurrentPoint+","+lng_CurrentPoint;
         String str_dest = "destination="+lat_Destination+","+lng_Destination;
 
@@ -1089,15 +969,10 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         return url;
     }
 
-
-//    以下，クラス ================================================
-
     private class DownloadTask extends AsyncTask<String, Void, String> {
         //非同期で取得
-
         @Override
         protected String doInBackground(String... url) {
-
             String data = "";
 
             try{
@@ -1114,12 +989,9 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             try{
                 URL url = new URL(strUrl);
 
-
                 urlConnection = (HttpURLConnection) url.openConnection();
 
-
                 urlConnection.connect();
-
 
                 iStream = urlConnection.getInputStream();
 
@@ -1231,15 +1103,9 @@ public class Instagram_connect_Activity extends FragmentActivity implements
         }
     }
 
-//    // クラス「ParserTask_Map」内のポリライン表示に使用する変数
-//    public int display_route = 0;   // 表示するルート
-//    public Polyline route_1;        // display_route == 1
-//    public Polyline route_2;        // display_route == 2
-
     //    結果が帰ってくる（時間出力，マップ案内）
     /*parse the Google Places in JSON format */
     private class ParserTask_Map extends AsyncTask<String, Integer, List<List<HashMap<String,String>>> > {
-
         // 引数 : [現在地と最終目的地点の緯度・経度の配列]
         int get_time(String... jsonData) {
 
@@ -1278,11 +1144,6 @@ public class Instagram_connect_Activity extends FragmentActivity implements
             }catch(Exception e){
                 e.printStackTrace();
             }
-
-            System.out.println("================------------------------================");
-            System.out.println(value[1]);
-            System.out.println("================------------------------================");
-
             return (List<List<HashMap<String, String>>>) value[0];
         }
 
@@ -1317,31 +1178,13 @@ public class Instagram_connect_Activity extends FragmentActivity implements
                     lineOptions.width(10);
                     lineOptions.color(Color.BLUE);
                 }
-
-//                //描画
-//                if(display_route == 0){
-//                    route_1 = gMap.addPolyline(lineOptions);
-//                    display_route = 2;
-//                } else if(display_route == 1) {
-//                    route_2.remove();
-//                    route_1 = gMap.addPolyline(lineOptions);
-//                    display_route = 2;
-//                } else if (display_route == 2){
-//                    route_1.remove();
-//                    route_2 = gMap.addPolyline(lineOptions);
-//                    display_route = 1;
-//                }
             }else{
-                //gMap.clear();
                 Toast.makeText(getApplicationContext(), "行き先をタップしてください", Toast.LENGTH_LONG).show();
             }
             progressDialog.hide();
         }
 
     }
-//    ===================================================================================^
-
-
 
     // カスタム情報ウィンドウのためのクラス
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
