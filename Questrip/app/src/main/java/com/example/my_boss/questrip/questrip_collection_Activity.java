@@ -56,7 +56,7 @@ public class questrip_collection_Activity extends Activity {
     private Button button_top;  //Topへ戻るボタン
 
 
-    private String userID ="ytakaya";
+    private String userID ="takaya";
 
 
 
@@ -93,7 +93,7 @@ public class questrip_collection_Activity extends Activity {
 
         //ここでサーバからキャラID取得
 //        url_get_server = "http://192.168.20.23:3000/zukan/:"+global.user;
-        url_get_server = "http://192.168.20.23:3000/zukan/:"+userID;
+        url_get_server = "http://192.168.20.32:3000/zukan/:"+userID;
 //        url_get_server = "http://192.168.12.11:3000/zukan/:"+userID;
 
         get_server_async = new get_server_Async();

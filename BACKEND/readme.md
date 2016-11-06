@@ -1,22 +1,38 @@
-# バックエンド用リポジトリ  
-* 作るもの  
-    * ログイン用DB(ユーザ名とpassで参照および)  
-    * ルート履歴DB(立ち寄ったところの名前と緯度経度)  
-    * museion上にルーティング用スクリプト  
-* 開発ベースはlinuxかな  
-    * サーバは研究室に置いとく  
-    * 外部からアクセスできるようにmuseionいじる必要あり  
+# ユーザ管理および図鑑用のバックエンド  
 
-# 環境  
+## 環境  
 * node.js : v4.4.7  
-* express
+* express : 4.x
 * MongoDB
 * Mongoose
 
-# 成果物  
+## 成果物  
 
-## nodejs_installer.sh  
-    * node.jsを自動でインストールする
-    * versionは4.4.7
+### ディレクトリ構成  
+
+今回はexpressで自動生成されたプロジェクト構成に準拠
+~~~
+$ tree .
+backend
+|
+|--app.js
+|--package.json
+|--nodejs_installer.sh
+|--models
+|  |--user.js
+|  |--zukan.js
+|--routes
+   |--auth
+   |  |--login.js
+   |--zukan
+      |--zukan.js
+~~~
+
+### 主要なスクリプト  
+
+#### app.js  
+
+#### nodejs_installer.sh  
+    * このサーバを動かすために必要なもの一式揃えるシェルスクリプト  
 
   

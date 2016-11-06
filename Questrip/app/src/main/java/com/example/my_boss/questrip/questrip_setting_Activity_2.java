@@ -63,8 +63,8 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
     private TimePickerDialog timePick;  //時間入力のためのDialog
     private String name;                //ユーザ名（どちらかといえばニックネーム）
     private String destination;         //目的地（データ型変更必要あり）
-    private int hour;                   //目標到達時間 何時か
-    private int minute;                 //目標到達時間 何分か
+    private int hour = 0;                   //目標到達時間 何時か
+    private int minute = 0;                 //目標到達時間 何分か
     private String area;                //現在位置の都道府県+庁 例:京都府庁
 
     private FrameLayout mascotFrame;    //画像表示のFrameLayout

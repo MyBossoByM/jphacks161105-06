@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 
 var Zukan = new Schema({
     username : { type: String }, 
-    characterID : { type: [Number] }
+    characterID : { type: [Number], unique: false, sparse: false}
 });
 
 module.exports = mongoose.model('zukan', Zukan);

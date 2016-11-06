@@ -331,7 +331,7 @@ public class Guide extends FragmentActivity implements
         //グローバル変数を取得(2016_11_05_19_40 TAKAYA)
         global = (global_values)this.getApplication();
 //        userID = global.user;
-        userID = "ytakaya";
+        userID = "takaya";
         latitude_Destination = global.latitude_final;
         longitude_Destination = global.longitude_final;
         //TAKAYAここまで
@@ -410,6 +410,9 @@ public class Guide extends FragmentActivity implements
 
         findViewById(R.id.button_route_update).setOnClickListener(this);
         findViewById(R.id.button_go_distination).setOnClickListener(this);
+
+
+
 
 //    ===================================================================================^
 
@@ -652,7 +655,7 @@ public class Guide extends FragmentActivity implements
             goal_Judge = true;
 //            最終目的地か中継地点かの判断（relayの座標とdestinationの座標が同じ場合，最終目的地）
             if(latitude_RelayPoint == latitude_Destination && longitude_RelayPoint == longitude_Destination){
-//                Toast.makeText(getApplicationContext(), "最終目的地にGOAL！！", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "最終目的地にGOAL！！", Toast.LENGTH_LONG).show();
 
 
                 //2016_11_05_19_40 created by TAKAYA
@@ -671,15 +674,14 @@ public class Guide extends FragmentActivity implements
                 toast.show();
 
 
-                url_post_server = "http://192.168.20.23:3000/zukan/:"+userID;
+                url_post_server = "http://192.168.20.32:3000/zukan/:"+userID;
 
                 post_server_async = new post_server_Async();
 
                 post_server_async.execute(url_post_server,json_postitem);
                 //TAKAYAここまで
-        }
-            else{
-//                Toast.makeText(getApplicationContext(), "中継地点にGOAL！！", Toast.LENGTH_LONG).show();
+        } else{
+                Toast.makeText(getApplicationContext(), "中継地点にGOAL！！", Toast.LENGTH_LONG).show();
 
 
                 //2016_11_05_19_40 crated by TAKAYA
@@ -696,17 +698,12 @@ public class Guide extends FragmentActivity implements
 //                Toast toast = Toast.makeText(getApplicationContext(), json_postitem, Toast.LENGTH_SHORT);
 //                toast.show();
 
-                url_post_server = "http://192.168.20.23:3000/zukan/:"+userID;
+                url_post_server = "http://192.168.20.32:3000/zukan/:"+userID;
 
                 post_server_async = new post_server_Async();
 
                 post_server_async.execute(url_post_server,json_postitem);
                 //TAKAYAここまで
-
-
-
-
-
 
 
             }
