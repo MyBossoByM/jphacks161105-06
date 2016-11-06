@@ -76,6 +76,7 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
     private Button yes;                 //「はい」ボタン
     private Button no;                  //「いいえ」ボタン
     private MapFragment mapFragment;    //マップ表示のFragment
+    private Bitmap bitmap;
 
     private int step = -1;              //質問ステップを管理
 
@@ -111,7 +112,6 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
     private String json_getitem;                        //APIから返ってきたJSONデータ格納
     private String image_url[] = new String[50];        //JSONデータからimage部分のみをパースしてここに入れる．その後imageBuilderAsyncへ
     private Bitmap image_of_character;                  //ご当地キャラの画像データ
-
 
     global_values global;
 
@@ -186,7 +186,7 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
         int width = image_of_character.getWidth();      //サイズ直す用
         int height = image_of_character.getHeight();    //サイズ直す用
         // ↓ 画像の大きさを統一
-        Bitmap bitmap = Bitmap.createScaledBitmap(image_of_character,
+        bitmap = Bitmap.createScaledBitmap(image_of_character,
                 (disp.getHeight()/5)*width/height, disp.getHeight()/5, false);
         mascot = (ImageView) findViewById(R.id.character);  //imageViewにセット
         mascot.setImageBitmap(bitmap);                      //画像を登録
@@ -208,7 +208,7 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
                 });
         //-------------------------------------------------
 
-        //現在地とか目標地をMapで表示するためのFragment
+        //現在地とか目標地をMapで表示するためのFragmentlag_of_mapManager = flag;
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mapFrame.setVisibility(View.INVISIBLE);    //最初は隠す
@@ -407,6 +407,7 @@ public class questrip_setting_Activity_2 extends FragmentActivity implements OnM
 
                         global.latitude_final = latitude;
                         global.longitude_final = longitude;
+                        global.bitmap = bitmap;
 
 //                        intent.putExtra("latitude",String.valueOf(latitude));
 //                        intent.putExtra("longitude",String.valueOf(longitude));

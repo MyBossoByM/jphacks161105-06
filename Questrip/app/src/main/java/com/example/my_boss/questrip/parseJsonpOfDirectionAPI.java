@@ -75,12 +75,42 @@ public class parseJsonpOfDirectionAPI {
 
                         System.out.println(temp);
 
-                        System.out.println("=========================================================");
-                        System.out.println(duration_txt);
-                        duration_txt = duration_txt.substring(0, duration_txt.length()-1);
-                        minute += Integer.parseInt(duration_txt);
-                        System.out.println(temp);
-                        System.out.println("=========================================================");
+//                        System.out.println("=========================================================");
+//                        System.out.println(duration_txt);
+
+//                        時間や分のストリングを時間に変換（分）
+
+                        if(duration_txt.indexOf("時間") != -1){
+                            String[] spl = duration_txt.split("時間", 0);
+//                            時間計算
+                            minute += Integer.parseInt(spl[0]) * 60;
+//                            分計算
+                            String spl_2 = duration_txt.substring(0, spl[1].length()-1);
+                            minute += Integer.parseInt(spl_2);
+                        }
+                        else{
+                            duration_txt = duration_txt.substring(0, duration_txt.length()-1);
+                            minute += Integer.parseInt(duration_txt);
+                        }
+//                        System.out.println("分========："+(duration_txt));
+//                        System.out.println("分："+Integer.parseInt(duration_txt));
+//                        時間や分のストリングを時間に変換（時間）
+//                        if(duration_txt.length() >= 4){
+////                            x時間yy分
+//                            duration_txt = duration_txt.substring(0, duration_txt.length()-5);
+//                            minute += Integer.parseInt(duration_txt) * 60;
+//                            System.out.println("分1："+Integer.parseInt(duration_txt));
+//                        }
+//                        if(duration_txt.length() >= 3 && Integer.parseInt(duration_txt)< 10){
+////                            x時間y分
+//                            duration_txt = duration_txt.substring(0, duration_txt.length()-4);
+//                            minute += Integer.parseInt(duration_txt) * 60;
+//                            System.out.println("分2："+Integer.parseInt(duration_txt));
+//                        }
+
+
+//                        System.out.println(temp);
+//                        System.out.println("=========================================================");
 
                         List<LatLng> list = decodePoly(polyline);
 
@@ -94,9 +124,9 @@ public class parseJsonpOfDirectionAPI {
                     //ルート座標
                     routes.add(path);
                 }
-                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-                System.out.println(minute);
-                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+//                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+//                System.out.println(minute);
+//                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
                 //ルート情報
                 ma.posinfo = temp;
@@ -107,9 +137,9 @@ public class parseJsonpOfDirectionAPI {
         }catch (Exception e){
         }
 
-        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        System.out.println(routes);
-        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+//        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+//        System.out.println(routes);
+//        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
 //        return routes;
 //        ========================================================v

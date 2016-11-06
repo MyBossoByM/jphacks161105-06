@@ -64,11 +64,6 @@ public class questrip_root_Activity extends Activity implements LocationListener
 
         setClickListener();
         locationStart();
-    }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
@@ -78,16 +73,34 @@ public class questrip_root_Activity extends Activity implements LocationListener
         }, 1000);
     }
 
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+
+        buttonOn();
+    }
+
     void setLogo(){
         logo.setAlpha(255);
         logo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.a2));
     }
 
-    void enable_button(){
+    void buttonOf(){
         start_from_here.setEnabled(false);
         start_from_there.setEnabled(false);
         search_around.setEnabled(false);
         char_collection.setEnabled(false);
+    }
+
+    void buttonOn(){
+        start_from_here.setEnabled(true);
+        start_from_there.setEnabled(true);
+        search_around.setEnabled(true);
+        char_collection.setEnabled(true);
+        start_from_here.setText("　　ここから冒険をはじめる　　　");
+        start_from_there.setText("　　違う場所から冒険をはじめる　");
+        search_around.setText("　　周辺のスポットまで冒険する　");
+        char_collection.setText("　　ご当地キャラ図鑑をみる　　　");
     }
 
     void select_mode(final Button button){
@@ -111,7 +124,6 @@ public class questrip_root_Activity extends Activity implements LocationListener
                 });
             }
         }, 0, 200); // 実行したい間隔(ミリ秒)
-
     }
 
     void setClickListener(){
@@ -119,7 +131,7 @@ public class questrip_root_Activity extends Activity implements LocationListener
             @Override
             public void onClick(View v) {
                 start_from_here.setText("　＞ここから冒険をはじめる　　　");
-                enable_button();
+                buttonOf();
                 select_mode(start_from_here);
                 HandlerThread handlerThread = new HandlerThread("dispmessage");
                 handlerThread.start();
@@ -130,8 +142,6 @@ public class questrip_root_Activity extends Activity implements LocationListener
                         Intent intent=new Intent();
                         intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.questrip_setting_Activity_2");
                         startActivity(intent);
-                        finish();
-
                     }
                 }, 1000);
             }
@@ -141,7 +151,7 @@ public class questrip_root_Activity extends Activity implements LocationListener
             @Override
             public void onClick(View v) {
                 start_from_there.setText("　＞違う場所から冒険をはじめる　");
-                enable_button();
+                buttonOf();
                 select_mode(start_from_there);
                 HandlerThread handlerThread = new HandlerThread("dispmessage");
                 handlerThread.start();
@@ -151,8 +161,6 @@ public class questrip_root_Activity extends Activity implements LocationListener
                         Intent intent=new Intent();
                         intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.questrip_setting_there_Activity");
                         startActivity(intent);
-                        finish();
-
                     }
                 }, 1000);
             }
@@ -162,7 +170,7 @@ public class questrip_root_Activity extends Activity implements LocationListener
             @Override
             public void onClick(View v) {
                 search_around.setText("　＞周辺のスポットまで冒険する　");
-                enable_button();
+                buttonOf();
                 select_mode(search_around);
                 HandlerThread handlerThread = new HandlerThread("dispmessage");
                 handlerThread.start();
@@ -172,7 +180,6 @@ public class questrip_root_Activity extends Activity implements LocationListener
                         Intent intent=new Intent();
                         intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.Instagram_connect_Activity");
                         startActivity(intent);
-                        finish();
                     }
                 }, 1000);
             }
@@ -182,7 +189,7 @@ public class questrip_root_Activity extends Activity implements LocationListener
             @Override
             public void onClick(View v) {
                 char_collection.setText("　＞ご当地キャラ図鑑をみる　　　");
-                enable_button();
+                buttonOf();
                 select_mode(char_collection);
                 Intent intent=new Intent();
                 intent.setClassName("com.example.my_boss.questrip","com.example.my_boss.questrip.questrip_collection_Activity");

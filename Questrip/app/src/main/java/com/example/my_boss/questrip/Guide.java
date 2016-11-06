@@ -9,6 +9,12 @@
 //・Instagram_connect_Activity の遷移部分追記
 //・
 
+
+//        ゴールアクティビティ
+//        セリフを考える
+//        ルートの色変更
+//        図鑑
+
 package com.example.my_boss.questrip;
 
 //styles.xml にNo action bar を記述
@@ -19,19 +25,30 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.AppIndex;
@@ -168,6 +185,15 @@ public class Guide extends FragmentActivity implements
 
     private Timer mTimer = null;
     private Handler mHandler = null;
+    private Timer mmTimer = null;
+    private Handler mmHandler = null;
+
+    //1文字ずつ表示するのに必要な変数----
+    private String put_txt;
+    private String put_word;
+    private String put_text;
+    private int i = 0;
+    //------------------------------
 
 
     //2016_11_05_19_40 crated by TAKAYA
@@ -180,6 +206,17 @@ public class Guide extends FragmentActivity implements
 
     global_values global;
     private String userID;
+
+    private RelativeLayout recyclerView;
+    private RelativeLayout gameframe;
+    private RelativeLayout layout;
+    private TextView text;
+    private TextView message;
+    private LinearLayout botton;
+    private ImageView mascot;
+    private int height;
+    private int width;
+    private String font = "Pixel10.ttf";  //8ビットフォント
 
 
 
@@ -289,6 +326,7 @@ public class Guide extends FragmentActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_guide);
 
         //グローバル変数を取得(2016_11_05_19_40 TAKAYA)
         global = (global_values)this.getApplication();
@@ -299,8 +337,28 @@ public class Guide extends FragmentActivity implements
         //TAKAYAここまで
 
 
+        // WindowManagerのインスタンス取得
+        WindowManager wm = getWindowManager();
+        // Displayのインスタンス取得
+        Display disp = wm.getDefaultDisplay();
+        height= disp.getHeight();
+        width = disp.getWidth();
 
+        layout = (RelativeLayout)findViewById(R.id.activity_main);
+        gameframe = (RelativeLayout)findViewById(R.id.mapframe);
+        text = (TextView)findViewById(R.id.myboss);
+        botton = (LinearLayout)findViewById(R.id.bottonll);
+        mascot = (ImageView)findViewById(R.id.mascot);
+        recyclerView = (RelativeLayout)findViewById(R.id.recyclerview);
+        message = (TextView)findViewById(R.id.message);
+        message.setTypeface(Typeface.createFromAsset(getAssets(), font));
 
+        int width = global.bitmap.getWidth();      //サイズ直す用
+        int height = global.bitmap.getHeight();    //サイズ直す用
+        // ↓ 画像の大きさを統一
+        Bitmap bitmap = Bitmap.createScaledBitmap(global.bitmap,
+                disp.getWidth()/3,(disp.getWidth()/3)*height/width,  false);
+        mascot.setImageBitmap(bitmap);                      //画像を登録
 
 
 //        インテント間の受け渡し
@@ -309,7 +367,6 @@ public class Guide extends FragmentActivity implements
         // intentから指定キーのDoubleを取得する
         latitude_RelayPoint = intent.getDoubleExtra("latitude_relaypoint",0);
         longitude_RelayPoint = intent.getDoubleExtra("longitude_relaypoint",0);
-        setContentView(R.layout.activity_guide);
 //        RelayPoint_setting(latitude_RelayPoint,longitude_RelayPoint);
 //        Destination_setting(latitude_Destination,longitude_Destination);
 
@@ -545,6 +602,35 @@ public class Guide extends FragmentActivity implements
 //        judge();
     }
 
+    void setView(){
+        gameframe.setId(1); text.setId(2); recyclerView.setId(3); botton.setId(4);
+
+        RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, (int)(height*0.51));
+        RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams lp3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams lp4 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        lp1.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        lp2.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        lp2.addRule(RelativeLayout.BELOW,1);
+        lp3.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        lp3.addRule(RelativeLayout.BELOW,2);
+        lp3.addRule(RelativeLayout.ABOVE,4);
+        lp4.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        lp4.addRule(RelativeLayout.CENTER_HORIZONTAL);
+
+        lp1.setMargins(0,0,0,0);
+        lp2.setMargins(0,10,0,80);
+        lp3.setMargins(0,0,0,0);
+        lp4.setMargins(0,80,0,0);
+
+        layout.removeAllViews();
+        layout.addView(gameframe,lp1);
+        layout.addView(text,lp2);
+        layout.addView(botton,lp4);
+        layout.addView(recyclerView,lp3);
+    }
 
     public void judge(){
         //        中継地点との距離
@@ -553,9 +639,9 @@ public class Guide extends FragmentActivity implements
         float[] results = new float[1];
         Location.distanceBetween(latitude_CurrentPoint, longitude_CurrentPoint, latitude_RelayPoint, longitude_RelayPoint, results);
         System.out.println("*******************************************");
-        if(goal_Judge == false){
-            Toast.makeText(this, "距離："+results[0], Toast.LENGTH_LONG).show();
-        }
+//        if(goal_Judge == false){
+//            Toast.makeText(this, "距離："+results[0], Toast.LENGTH_LONG).show();
+//        }
         System.out.println("*******************************************");
 
         System.out.println(latitude_RelayPoint+"   "+latitude_Destination);
@@ -566,10 +652,10 @@ public class Guide extends FragmentActivity implements
             goal_Judge = true;
 //            最終目的地か中継地点かの判断（relayの座標とdestinationの座標が同じ場合，最終目的地）
             if(latitude_RelayPoint == latitude_Destination && longitude_RelayPoint == longitude_Destination){
-                Toast.makeText(getApplicationContext(), "最終目的地にGOAL！！", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "最終目的地にGOAL！！", Toast.LENGTH_LONG).show();
 
 
-                //2016_11_05_19_40 crated by TAKAYA
+                //2016_11_05_19_40 created by TAKAYA
                 url_getitem = "http://localchara.jp/services/api//search/location/character?api_key="
                         +api_key_gotouchi+"&ll="+latitude_CurrentPoint+","+longitude_CurrentPoint+"&counts="+30;
 
@@ -591,15 +677,9 @@ public class Guide extends FragmentActivity implements
 
                 post_server_async.execute(url_post_server,json_postitem);
                 //TAKAYAここまで
-
-
-
-
-
-
         }
             else{
-                Toast.makeText(getApplicationContext(), "中継地点にGOAL！！", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "中継地点にGOAL！！", Toast.LENGTH_LONG).show();
 
 
                 //2016_11_05_19_40 crated by TAKAYA
@@ -613,10 +693,8 @@ public class Guide extends FragmentActivity implements
                 } catch (InterruptedException e) {e.printStackTrace();}
                 catch (ExecutionException e) {e.printStackTrace();}
 
-
-                Toast toast = Toast.makeText(getApplicationContext(), json_postitem, Toast.LENGTH_SHORT);
-                toast.show();
-
+//                Toast toast = Toast.makeText(getApplicationContext(), json_postitem, Toast.LENGTH_SHORT);
+//                toast.show();
 
                 url_post_server = "http://192.168.20.23:3000/zukan/:"+userID;
 
@@ -679,7 +757,7 @@ public class Guide extends FragmentActivity implements
 // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
 
-//        setView();
+        setView();
 
         mHandler = new Handler();
         mTimer = new Timer();
@@ -695,16 +773,67 @@ public class Guide extends FragmentActivity implements
                 });
             }
         }, 1000, 10000); // 実行したい間隔(ミリ秒)
+
+        //文字表示専用スレッド
+        mmHandler = new Handler();
+        mmTimer = new Timer();
+        mmTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        String str = "";
+                        int random = (int) (Math.random() * 3) + 1;
+                        if (random == 1) str = "どんどん進もう";
+                        else if (random == 2) str = "少し休憩するかい？";
+                        else if (random == 3) str = "もう少しだ";
+                        put_text = "";
+                        put_word = "";
+                        i = 0;
+                        put_txt = str;
+                        handler.sendEmptyMessage(1);
+                    }
+                });
+            }
+        }, 1000, 10000); // 実行したい間隔(ミリ秒)
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
         com.google.android.gms.appindexing.AppIndex.AppIndexApi.start(client, getIndexApiAction());
-
-
-
-
-
     }
+
+    // 文字列を一文字ずつ出力するハンドラ------------------------
+    private Handler handler = new Handler() {
+        @Override
+        public void dispatchMessage(Message msg) {
+            // 文字列を配列dataに１文字ずつセット
+            char data[] = put_txt.toCharArray();//（1）
+            if (i < data.length) {//(2)
+                if (msg.what == 1) {
+                    put_word = String.valueOf(data[i]);//(3)
+                    put_text = put_text + put_word;//(4)
+                    message.setText(put_text);//(5)
+                    handler.sendEmptyMessageDelayed(1, 120);
+                    i++;
+                } else {
+                    super.dispatchMessage(msg);
+                }
+            }
+        }
+    };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+        }
+    }
+
 
     @Override
     public void onStop() {
